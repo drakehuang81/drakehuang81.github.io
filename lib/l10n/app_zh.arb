@@ -1,0 +1,70 @@
+{
+  "@@locale": "zh",
+  "appTitle": "履歷 - 黃詰喨",
+  "name": "黃詰喨",
+  "jobTitle": "資深 iOS 開發工程師",
+  "summary": "擁有 6 年以上 iOS 開發經驗",
+  "switchLanguage": "EN",
+
+  "navAboutMe": "關於我",
+  "navResume": "履歷",
+  "navContact": "聯絡",
+
+  "hello": "你好",
+  "hereIsWhoIAm": "關於我是誰以及我做什麼",
+  "aboutMeIntro": "我是一位充滿熱情的 iOS 開發工程師，擁有超過 6 年的高品質行動應用程式開發經驗。我專精於 Swift、SwiftUI 及現代 iOS 架構。",
+  "aboutMeIntro2": "我熱愛為複雜問題創造優雅的解決方案，並且總是渴望學習新技術。",
+  "viewResume": "履歷",
+
+  "resumeTitle": "履歷",
+  "experienceSection": "工作經歷",
+  "educationSection": "教育背景",
+  "downloadCV": "下載履歷",
+  "confidential": "保密",
+
+  "job1Title": "資深 iOS 開發工程師",
+  "job1Period": "2024.12 - 2025.10",
+  "job1Desc1": "維護 Objective-C 與 Swift 專案",
+  "job1Desc2": "使用 SwiftUI 開發新功能",
+  "job1Desc3": "維護 CI/CD 流程",
+
+  "job2Company": "Masterwork Aoitek Tech Corp Ltd",
+  "job2Title": "資深 iOS 開發工程師",
+  "job2Period": "2023.03 - 2024.10",
+  "job2Desc1": "開發 Lollipop 嬰兒攝影機（IoT 產品）",
+  "job2Desc2": "導入 MVVM-C 架構與 RxSwift",
+  "job2Desc3": "建立 CI/CD 流程",
+
+  "job3Company": "Connect Mobile LTD",
+  "job3Title": "資深 iOS 開發工程師",
+  "job3Period": "2022.07 - 2022.12",
+  "job3Desc1": "開發地圖社交平台",
+  "job3Desc2": "整合 Applovin 與 AdMob 廣告變現",
+
+  "job4Company": "ET New Media Holding Co., Ltd",
+  "job4Title": "iOS 開發工程師",
+  "job4Period": "2019.09 - 2022.07",
+  "job4Desc1": "開發東森新聞雲、東森寵物等 App",
+  "job4Desc2": "擔任 RxSwift 講師",
+  "job4Desc3": "優化記憶體洩漏問題",
+
+  "job5Company": "ZIMI TECHNOLOGY CO., LTD",
+  "job5Title": "iOS 開發工程師",
+  "job5Period": "2019.02 - 2019.06",
+
+  "job6Company": "JU YAO INFORMATION CONSULTANT LTD.",
+  "job6Title": "IT 工程師",
+  "job6Period": "2018.04 - 2018.10",
+
+  "eduSchool": "淡江大學",
+  "eduDegree": "學士",
+  "eduMajor": "資訊與圖書館學系",
+
+  "contactTitle": "聯絡我",
+  "firstName": "名字",
+  "lastName": "姓氏",
+  "email": "電子郵件",
+  "subject": "主旨",
+  "message": "訊息",
+  "send": "送出"
+}
