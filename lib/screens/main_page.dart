@@ -20,7 +20,7 @@ class _MainPageState extends State<MainPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: const Color(0xFFF4F4F4),
       body: Column(
         children: [
           NavBar(
@@ -46,24 +46,37 @@ class _MainPageState extends State<MainPage> {
   }
 
   Widget _buildAboutMeTab() {
-    return Container(
-      color: const Color(0xFFE8DDD4),
-      width: double.infinity,
-      child: Center(
-        child: SingleChildScrollView(
-          child: AboutMeSection(
-            onViewResume: () => setState(() => _selectedIndex = 1),
-          ),
-        ),
+    return _buildCenteredScrollable(
+      AboutMeSection(
+        onViewResume: () => setState(() => _selectedIndex = 1),
+        onViewContact: () => setState(() => _selectedIndex = 2),
       ),
     );
   }
 
   Widget _buildResumeTab() {
-    return const SingleChildScrollView(child: ResumeSection());
+    return _buildCenteredScrollable(const ResumeSection());
   }
 
   Widget _buildContactTab() {
-    return const SingleChildScrollView(child: ContactSection());
+    return _buildCenteredScrollable(const ContactSection());
+  }
+
+  Widget _buildCenteredScrollable(Widget child) {
+    return Container(
+      color: const Color(0xFFF4F4F4),
+      width: double.infinity,
+      height: double.infinity,
+      child: LayoutBuilder(
+        builder: (context, constraints) {
+          return SingleChildScrollView(
+            child: ConstrainedBox(
+              constraints: BoxConstraints(minHeight: constraints.maxHeight),
+              child: Center(child: child),
+            ),
+          );
+        },
+      ),
+    );
   }
 }

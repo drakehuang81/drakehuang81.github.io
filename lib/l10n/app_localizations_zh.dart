@@ -52,7 +52,13 @@ class AppLocalizationsZh extends AppLocalizations {
   String get resumeTitle => '履歷';
 
   @override
+  String get workExperience => 'Work Experience';
+
+  @override
   String get experienceSection => '工作經歷';
+
+  @override
+  String get skillsSection => 'Skills';
 
   @override
   String get educationSection => '教育背景';
@@ -158,6 +164,15 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get contactTitle => '聯絡我';
+
+  @override
+  String get contactSubtitle => 'Looking forward to hearing from you';
+
+  @override
+  String get phone => 'Phone';
+
+  @override
+  String get submit => 'Submit';
 
   @override
   String get firstName => '名字';

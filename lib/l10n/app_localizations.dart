@@ -182,11 +182,23 @@ abstract class AppLocalizations {
   /// **'Resume'**
   String get resumeTitle;
 
+  /// No description provided for @workExperience.
+  ///
+  /// In en, this message translates to:
+  /// **'Work Experience'**
+  String get workExperience;
+
   /// No description provided for @experienceSection.
   ///
   /// In en, this message translates to:
   /// **'Experience'**
   String get experienceSection;
+
+  /// No description provided for @skillsSection.
+  ///
+  /// In en, this message translates to:
+  /// **'Skills'**
+  String get skillsSection;
 
   /// No description provided for @educationSection.
   ///
@@ -395,8 +407,26 @@ abstract class AppLocalizations {
   /// No description provided for @contactTitle.
   ///
   /// In en, this message translates to:
-  /// **'Let\'s talk'**
+  /// **'Contact'**
   String get contactTitle;
+
+  /// No description provided for @contactSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Looking forward to hearing from you'**
+  String get contactSubtitle;
+
+  /// No description provided for @phone.
+  ///
+  /// In en, this message translates to:
+  /// **'Phone'**
+  String get phone;
+
+  /// No description provided for @submit.
+  ///
+  /// In en, this message translates to:
+  /// **'Submit'**
+  String get submit;
 
   /// No description provided for @firstName.
   ///

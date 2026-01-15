@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../l10n/app_localizations.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class ContactSection extends StatefulWidget {
   const ContactSection({super.key});
@@ -32,123 +33,165 @@ class _ContactSectionState extends State<ContactSection> {
     final isDesktop = MediaQuery.of(context).size.width >= 800;
 
     return Container(
-      color: const Color(0xFFE8DDD4),
-      padding: EdgeInsets.symmetric(
-        horizontal: isDesktop ? 120 : 24,
-        vertical: 64,
+      color: const Color(0xFFF4F4F4),
+      padding: const EdgeInsets.symmetric(vertical: 64),
+      child: Center(
+        child: Container(
+          constraints: const BoxConstraints(maxWidth: 1000),
+          padding: EdgeInsets.symmetric(horizontal: isDesktop ? 48 : 24),
+          child: isDesktop
+              ? _buildDesktopLayout(context, l10n)
+              : _buildMobileLayout(context, l10n),
+        ),
       ),
-      child: Column(
-        children: [
-          // Section title
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
+    );
+  }
+
+  Widget _buildDesktopLayout(BuildContext context, AppLocalizations l10n) {
+    return Row(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        // Left Info Column
+        Expanded(
+          flex: 2,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Container(width: 16, height: 16, color: const Color(0xFF2563EB)),
-              const SizedBox(width: 12),
               Text(
                 l10n.contactTitle,
                 style: const TextStyle(
                   fontSize: 32,
                   fontWeight: FontWeight.bold,
-                  fontStyle: FontStyle.italic,
+                ),
+              ),
+              const SizedBox(height: 16),
+              Text(
+                l10n.contactSubtitle,
+                style: TextStyle(
+                  fontSize: 14,
+                  fontWeight: FontWeight.w400,
+                  color: Colors.grey[800],
+                ),
+              ),
+              const SizedBox(height: 48),
+              _buildSocialButton(
+                assetPath: 'assets/images/github-sign.png',
+                label: 'GitHub',
+                url: 'https://github.com/drakehuang81',
+              ),
+              _buildSocialButton(
+                assetPath: 'assets/images/linkedin.png',
+                label: 'LinkedIn',
+                url: 'https://www.linkedin.com/in/drake-huang-b26028179',
+              ),
+            ],
+          ),
+        ),
+        const SizedBox(width: 64),
+        // Right Form Column
+        Expanded(flex: 3, child: _buildForm(context, l10n)),
+      ],
+    );
+  }
+
+  Widget _buildMobileLayout(BuildContext context, AppLocalizations l10n) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          l10n.contactTitle,
+          style: const TextStyle(fontSize: 32, fontWeight: FontWeight.bold),
+        ),
+        const SizedBox(height: 16),
+        Text(
+          l10n.contactSubtitle,
+          style: TextStyle(
+            fontSize: 14,
+            fontWeight: FontWeight.w400,
+            color: Colors.grey[800],
+          ),
+        ),
+        const SizedBox(height: 32),
+        _buildSocialButton(
+          assetPath: 'assets/images/github-sign.png',
+          label: 'GitHub',
+          url: 'https://github.com/drakehuang81',
+        ),
+        _buildSocialButton(
+          assetPath: 'assets/images/linkedin.png',
+          label: 'LinkedIn',
+          url: 'https://www.linkedin.com/in/drake-huang-b26028179',
+        ),
+        const SizedBox(height: 48),
+        _buildForm(context, l10n),
+      ],
+    );
+  }
+
+  Widget _buildForm(BuildContext context, AppLocalizations l10n) {
+    return Form(
+      key: _formKey,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            children: [
+              Expanded(
+                child: _buildTextField(
+                  l10n.firstName,
+                  _firstNameController,
+                  required: true,
+                ),
+              ),
+              const SizedBox(width: 24),
+              Expanded(
+                child: _buildTextField(
+                  l10n.lastName,
+                  _lastNameController,
+                  required: true,
                 ),
               ),
             ],
           ),
-          const SizedBox(height: 48),
-          // Form card
-          Container(
-            constraints: BoxConstraints(
-              maxWidth: isDesktop ? 600 : double.infinity,
-            ),
-            padding: const EdgeInsets.all(40),
-            decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.circular(4),
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.black.withAlpha(25),
-                  blurRadius: 20,
-                  offset: const Offset(0, 10),
+          const SizedBox(height: 24),
+          Row(
+            children: [
+              Expanded(
+                child: _buildTextField(
+                  l10n.email,
+                  _emailController,
+                  required: true,
                 ),
-              ],
-            ),
-            child: Form(
-              key: _formKey,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  // First name & Last name row
-                  if (isDesktop)
-                    Row(
-                      children: [
-                        Expanded(
-                          child: _buildTextField(
-                            l10n.firstName,
-                            _firstNameController,
-                            required: true,
-                          ),
-                        ),
-                        const SizedBox(width: 24),
-                        Expanded(
-                          child: _buildTextField(
-                            l10n.lastName,
-                            _lastNameController,
-                            required: true,
-                          ),
-                        ),
-                      ],
-                    )
-                  else ...[
-                    _buildTextField(
-                      l10n.firstName,
-                      _firstNameController,
-                      required: true,
-                    ),
-                    const SizedBox(height: 24),
-                    _buildTextField(
-                      l10n.lastName,
-                      _lastNameController,
-                      required: true,
-                    ),
-                  ],
-                  const SizedBox(height: 24),
-                  // Email
-                  _buildTextField(l10n.email, _emailController, required: true),
-                  const SizedBox(height: 24),
-                  // Subject
-                  _buildTextField(l10n.subject, _subjectController),
-                  const SizedBox(height: 24),
-                  // Message
-                  _buildTextField(
-                    l10n.message,
-                    _messageController,
-                    maxLines: 4,
-                  ),
-                  const SizedBox(height: 32),
-                  // Send button
-                  ElevatedButton(
-                    onPressed: _handleSubmit,
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: const Color(0xFF2563EB),
-                      foregroundColor: Colors.white,
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 40,
-                        vertical: 16,
-                      ),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(24),
-                      ),
-                    ),
-                    child: Text(
-                      l10n.send,
-                      style: const TextStyle(
-                        fontSize: 14,
-                        fontWeight: FontWeight.w600,
-                      ),
-                    ),
-                  ),
-                ],
+              ),
+              const SizedBox(width: 24),
+              Expanded(
+                child: _buildTextField(l10n.subject, _subjectController),
+              ),
+            ],
+          ),
+          const SizedBox(height: 24),
+          _buildTextField(l10n.message, _messageController, maxLines: 4),
+          const SizedBox(height: 32),
+          // Submit Button
+          SizedBox(
+            width: 200, // or double.infinity for full width
+            height: 48,
+            child: ElevatedButton(
+              onPressed: _handleSubmit,
+              style: ElevatedButton.styleFrom(
+                backgroundColor: const Color(0xFFE5A013), // Yellow
+                foregroundColor: Colors.black,
+                elevation: 0,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(24),
+                ),
+              ),
+              child: Text(
+                l10n.submit,
+                style: const TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
             ),
           ),
@@ -170,15 +213,15 @@ class _ContactSectionState extends State<ContactSection> {
           text: TextSpan(
             text: label,
             style: TextStyle(
-              fontSize: 14,
-              color: Colors.grey[800],
+              fontSize: 13,
+              color: Colors.grey[700],
               fontWeight: FontWeight.w500,
             ),
             children: required
                 ? const [
                     TextSpan(
                       text: ' *',
-                      style: TextStyle(color: Colors.red),
+                      style: TextStyle(color: Colors.black),
                     ),
                   ]
                 : null,
@@ -190,25 +233,34 @@ class _ContactSectionState extends State<ContactSection> {
           maxLines: maxLines,
           decoration: InputDecoration(
             filled: true,
-            fillColor: Colors.grey[50],
-            border: UnderlineInputBorder(
-              borderSide: BorderSide(color: Colors.grey[300]!),
-            ),
-            enabledBorder: UnderlineInputBorder(
-              borderSide: BorderSide(color: Colors.grey[300]!),
-            ),
-            focusedBorder: const UnderlineInputBorder(
-              borderSide: BorderSide(color: Color(0xFF2563EB)),
-            ),
+            fillColor: Colors
+                .transparent, // Transparent as per image look? Or very light grey? Image looks like thin border.
+            // Let's go with a very light background + border to match the clean look
             contentPadding: const EdgeInsets.symmetric(
-              horizontal: 0,
+              horizontal: 12,
               vertical: 12,
+            ),
+            enabledBorder: OutlineInputBorder(
+              borderSide: BorderSide(color: Colors.grey[400]!, width: 0.5),
+              borderRadius: BorderRadius.circular(0), // Rectangular look
+            ),
+            focusedBorder: OutlineInputBorder(
+              borderSide: const BorderSide(color: Colors.black, width: 1),
+              borderRadius: BorderRadius.circular(0),
+            ),
+            errorBorder: OutlineInputBorder(
+              borderSide: const BorderSide(color: Colors.red, width: 0.5),
+              borderRadius: BorderRadius.circular(0),
+            ),
+            focusedErrorBorder: OutlineInputBorder(
+              borderSide: const BorderSide(color: Colors.red, width: 1),
+              borderRadius: BorderRadius.circular(0),
             ),
           ),
           validator: required
               ? (value) {
                   if (value == null || value.isEmpty) {
-                    return 'This field is required';
+                    return 'Required';
                   }
                   return null;
                 }
@@ -223,6 +275,45 @@ class _ContactSectionState extends State<ContactSection> {
       ScaffoldMessenger.of(
         context,
       ).showSnackBar(const SnackBar(content: Text('Message sent!')));
+    }
+  }
+
+  Widget _buildSocialButton({
+    required String assetPath,
+    required String label,
+    required String url,
+  }) {
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 16),
+      child: InkWell(
+        onTap: () => _launchUrl(url),
+        borderRadius: BorderRadius.circular(8),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 0),
+          child: Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Image.asset(assetPath, width: 24, height: 24),
+              const SizedBox(width: 12),
+              Text(
+                label,
+                style: const TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.w600,
+                  color: Colors.black,
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  Future<void> _launchUrl(String urlString) async {
+    final Uri url = Uri.parse(urlString);
+    if (!await launchUrl(url)) {
+      debugPrint('Could not launch $url');
     }
   }
 }

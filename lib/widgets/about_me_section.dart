@@ -3,8 +3,13 @@ import '../l10n/app_localizations.dart';
 
 class AboutMeSection extends StatelessWidget {
   final VoidCallback onViewResume;
+  final VoidCallback onViewContact;
 
-  const AboutMeSection({super.key, required this.onViewResume});
+  const AboutMeSection({
+    super.key,
+    required this.onViewResume,
+    required this.onViewContact,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -18,166 +23,162 @@ class AboutMeSection extends StatelessWidget {
   }
 
   Widget _buildDesktopLayout(BuildContext context, AppLocalizations l10n) {
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 48, vertical: 64),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          // Profile Card
-          _buildProfileCard(context, l10n),
-          const SizedBox(width: 64),
-          // Intro Content
-          Expanded(child: _buildIntroContent(context, l10n)),
-        ],
+    return Center(
+      child: Container(
+        constraints: const BoxConstraints(maxWidth: 1000),
+        padding: const EdgeInsets.symmetric(horizontal: 48, vertical: 64),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            // Left: Photo
+            _buildPhoto(),
+            const SizedBox(width: 80),
+            // Right: Content
+            Expanded(child: _buildContent(context, l10n, isDesktop: true)),
+          ],
+        ),
       ),
     );
   }
 
   Widget _buildMobileLayout(BuildContext context, AppLocalizations l10n) {
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 32),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          _buildProfileCard(context, l10n),
-          const SizedBox(height: 32),
-          _buildIntroContent(context, l10n),
-        ],
+    return Center(
+      child: Container(
+        constraints: const BoxConstraints(maxWidth: 600),
+        padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 32),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            _buildPhoto(),
+            const SizedBox(height: 48),
+            _buildContent(context, l10n, isDesktop: false),
+          ],
+        ),
       ),
     );
   }
 
-  Widget _buildProfileCard(BuildContext context, AppLocalizations l10n) {
+  Widget _buildPhoto() {
     return Container(
-      width: 280,
-      padding: const EdgeInsets.all(32),
+      width: 300,
+      height: 300,
       decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(4),
+        shape: BoxShape.circle,
+        color: Colors.grey[300],
+        image: const DecorationImage(
+          image: AssetImage('assets/images/profile_photo.png'),
+          fit: BoxFit.cover,
+        ),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withAlpha(25),
+            color: Colors.black.withAlpha(20),
             blurRadius: 20,
             offset: const Offset(0, 10),
           ),
         ],
       ),
-      child: Column(
-        children: [
-          // Avatar placeholder
-          Container(
-            width: 140,
-            height: 140,
-            decoration: BoxDecoration(
-              shape: BoxShape.circle,
-              color: Colors.grey[300],
-              border: Border.all(color: Colors.grey[400]!, width: 2),
-            ),
-            child: Icon(Icons.person, size: 60, color: Colors.grey[500]),
-          ),
-          const SizedBox(height: 24),
-          // Name
-          Text(
-            l10n.name,
-            style: const TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
-            textAlign: TextAlign.center,
-          ),
-          const SizedBox(height: 8),
-          // Divider
-          Container(width: 40, height: 3, color: const Color(0xFF2563EB)),
-          const SizedBox(height: 16),
-          // Job title
-          Text(
-            l10n.jobTitle.toUpperCase(),
-            style: TextStyle(
-              fontSize: 12,
-              color: Colors.grey[600],
-              letterSpacing: 2,
-            ),
-            textAlign: TextAlign.center,
-          ),
-          const SizedBox(height: 24),
-          // Social icons
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              _buildSocialIcon(Icons.link),
-              const SizedBox(width: 16),
-              _buildSocialIcon(Icons.code),
-              const SizedBox(width: 16),
-              _buildSocialIcon(Icons.email_outlined),
-            ],
-          ),
-        ],
-      ),
     );
   }
 
-  Widget _buildSocialIcon(IconData icon) {
-    return Container(
-      padding: const EdgeInsets.all(8),
-      child: Icon(icon, size: 20, color: Colors.grey[700]),
-    );
-  }
-
-  Widget _buildIntroContent(BuildContext context, AppLocalizations l10n) {
+  Widget _buildContent(
+    BuildContext context,
+    AppLocalizations l10n, {
+    required bool isDesktop,
+  }) {
     return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
+      crossAxisAlignment: isDesktop
+          ? CrossAxisAlignment.start
+          : CrossAxisAlignment.center,
       children: [
         // Hello
         Text(
           l10n.hello,
           style: const TextStyle(
-            fontSize: 56,
-            fontWeight: FontWeight.bold,
-            fontStyle: FontStyle.italic,
+            fontSize: 80,
+            fontWeight: FontWeight.w900,
+            height: 1,
+            letterSpacing: -2,
+            color: Colors.black,
           ),
-        ),
-        const SizedBox(height: 8),
-        // Subtitle
-        Text(
-          l10n.hereIsWhoIAm,
-          style: TextStyle(fontSize: 18, color: Colors.grey[800]),
         ),
         const SizedBox(height: 24),
-        // Resume button
-        ElevatedButton(
-          onPressed: onViewResume,
-          style: ElevatedButton.styleFrom(
-            backgroundColor: const Color(0xFF2563EB),
-            foregroundColor: Colors.white,
-            padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 16),
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(24),
-            ),
-          ),
-          child: Text(
-            l10n.viewResume,
-            style: const TextStyle(
-              fontSize: 14,
-              fontWeight: FontWeight.w600,
-              letterSpacing: 0.5,
-            ),
-          ),
-        ),
-        const SizedBox(height: 32),
-        // Intro paragraphs
+        // Subtitle
         Text(
-          l10n.aboutMeIntro,
-          style: TextStyle(fontSize: 15, color: Colors.grey[700], height: 1.6),
+          "A Bit About Me",
+          style: const TextStyle(
+            fontSize: 20,
+            fontWeight: FontWeight.bold,
+            color: Colors.black,
+          ),
         ),
         const SizedBox(height: 16),
+        // Description
+        Text(
+          l10n.aboutMeIntro,
+          style: TextStyle(fontSize: 16, color: Colors.grey[700], height: 1.6),
+          textAlign: isDesktop ? TextAlign.start : TextAlign.center,
+        ),
+        const SizedBox(height: 8),
         Text(
           l10n.aboutMeIntro2,
-          style: TextStyle(
-            fontSize: 15,
-            color: Colors.grey[500],
-            fontStyle: FontStyle.italic,
-            height: 1.6,
-          ),
+          style: TextStyle(fontSize: 16, color: Colors.grey[700], height: 1.6),
+          textAlign: isDesktop ? TextAlign.start : TextAlign.center,
+        ),
+        const SizedBox(height: 48),
+        // Buttons
+        Row(
+          mainAxisAlignment: isDesktop
+              ? MainAxisAlignment.start
+              : MainAxisAlignment.center,
+          children: [
+            _buildCircleButton(
+              l10n.viewResume,
+              const Color(0xFFE5A013), // Yellow
+              onViewResume,
+            ),
+            const SizedBox(width: 24),
+            _buildCircleButton(
+              l10n.navContact,
+              const Color(0xFF7DD1D3), // Teal
+              onViewContact,
+            ),
+          ],
         ),
       ],
+    );
+  }
+
+  Widget _buildCircleButton(String label, Color color, VoidCallback onTap) {
+    return InkWell(
+      onTap: onTap,
+      borderRadius: BorderRadius.circular(100),
+      child: Container(
+        width: 100,
+        height: 100,
+        decoration: BoxDecoration(
+          shape: BoxShape.circle,
+          color: color,
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withAlpha(25),
+              blurRadius: 10,
+              offset: const Offset(0, 5),
+            ),
+          ],
+        ),
+        child: Center(
+          child: Text(
+            label,
+            style: const TextStyle(
+              fontSize: 14,
+              fontWeight: FontWeight.bold,
+              color: Colors.black,
+            ),
+            textAlign: TextAlign.center,
+          ),
+        ),
+      ),
     );
   }
 }

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import '../l10n/app_localizations.dart';
-import 'experience_card.dart';
 
 class ResumeSection extends StatelessWidget {
   const ResumeSection({super.key});
@@ -11,186 +10,237 @@ class ResumeSection extends StatelessWidget {
     final isDesktop = MediaQuery.of(context).size.width >= 800;
 
     return Container(
-      color: const Color(0xFFE8DDD4),
-      padding: EdgeInsets.symmetric(
-        horizontal: isDesktop ? 120 : 24,
-        vertical: 64,
-      ),
-      child: Column(
-        children: [
-          // Section title
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
+      color: const Color(0xFFF4F4F4),
+      padding: const EdgeInsets.symmetric(vertical: 64),
+      child: Center(
+        child: Container(
+          constraints: const BoxConstraints(maxWidth: 1000),
+          padding: EdgeInsets.symmetric(horizontal: isDesktop ? 48 : 24),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Container(width: 16, height: 16, color: const Color(0xFF2563EB)),
-              const SizedBox(width: 12),
+              // Page Title
               Text(
                 l10n.resumeTitle,
                 style: const TextStyle(
-                  fontSize: 32,
-                  fontWeight: FontWeight.bold,
+                  fontSize: 48,
+                  fontWeight: FontWeight.w900,
+                  letterSpacing: -1,
                 ),
               ),
+              const SizedBox(height: 80),
+
+              // Work Experience Section
+              _buildSection(
+                context,
+                title: l10n.workExperience,
+                content: Column(
+                  children: [
+                    _buildResumeItem(
+                      period: l10n.job1Period,
+                      title: l10n.job1Title,
+                      subtitle: l10n.confidential,
+                      description:
+                          "${l10n.job1Desc1}\n${l10n.job1Desc2}\n${l10n.job1Desc3}",
+                    ),
+                    _buildResumeItem(
+                      period: l10n.job2Period,
+                      title: l10n.job2Title,
+                      subtitle: l10n.job2Company,
+                      description:
+                          "${l10n.job2Desc1}\n${l10n.job2Desc2}\n${l10n.job2Desc3}",
+                    ),
+                    _buildResumeItem(
+                      period: l10n.job3Period,
+                      title: l10n.job3Title,
+                      subtitle: l10n.job3Company,
+                      description: "${l10n.job3Desc1}\n${l10n.job3Desc2}",
+                    ),
+                    _buildResumeItem(
+                      period: l10n.job4Period,
+                      title: l10n.job4Title,
+                      subtitle: l10n.job4Company,
+                      description:
+                          "${l10n.job4Desc1}\n${l10n.job4Desc2}\n${l10n.job4Desc3}",
+                    ),
+                  ],
+                ),
+                isDesktop: isDesktop,
+              ),
+
+              const Divider(height: 80, thickness: 1, color: Color(0xFFE0E0E0)),
+
+              // Skills Section
+              _buildSection(
+                context,
+                title: l10n.skillsSection,
+                content: Column(
+                  children: [
+                    _buildResumeItem(
+                      period: "Languages",
+                      title: "Swift, Objective-C, Dart (Flutter), Python",
+                      subtitle: "",
+                      description: "",
+                    ),
+                    _buildResumeItem(
+                      period: "Frameworks",
+                      title: "SwiftUI, UIKit, RxSwift, Combine",
+                      subtitle: "",
+                      description: "",
+                    ),
+                    _buildResumeItem(
+                      period: "Tools",
+                      title: "Xcode, Git, Jenkins, Fastlane, JIRA",
+                      subtitle: "",
+                      description: "",
+                    ),
+                  ],
+                ),
+                isDesktop: isDesktop,
+              ),
+
+              const Divider(height: 80, thickness: 1, color: Color(0xFFE0E0E0)),
+
+              // Education Section
+              _buildSection(
+                context,
+                title: l10n.educationSection,
+                content: _buildResumeItem(
+                  period: "2010 - 2014",
+                  title: l10n.eduSchool,
+                  subtitle: l10n.eduDegree,
+                  description: l10n.eduMajor,
+                ),
+                isDesktop: isDesktop,
+              ),
+
+              const SizedBox(height: 80),
+
+              /*
+              // Download Button at bottom
+              Align(
+                alignment: Alignment.centerRight,
+                child: TextButton.icon(
+                  onPressed: () {},
+                  icon: const Icon(Icons.download, size: 18),
+                  label: Text(l10n.downloadCV),
+                  style: TextButton.styleFrom(
+                    foregroundColor: Colors.black,
+                    textStyle: const TextStyle(fontWeight: FontWeight.bold),
+                  ),
+                ),
+              ),
+              */
             ],
           ),
-          const SizedBox(height: 48),
-          // Experience section
-          _buildExperienceSection(context, l10n, isDesktop),
-          const SizedBox(height: 48),
-          // Education section
-          _buildEducationSection(context, l10n, isDesktop),
-        ],
+        ),
       ),
     );
   }
 
-  Widget _buildExperienceSection(
-    BuildContext context,
-    AppLocalizations l10n,
-    bool isDesktop,
-  ) {
-    return Column(
+  Widget _buildSection(
+    BuildContext context, {
+    required String title,
+    required Widget content,
+    required bool isDesktop,
+  }) {
+    if (!isDesktop) {
+      return Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            title,
+            style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+          ),
+          const SizedBox(height: 32),
+          content,
+        ],
+      );
+    }
+    return Row(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        // Header with download button
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Text(
-              l10n.experienceSection,
-              style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+        // Section Title Column
+        Expanded(
+          flex: 1,
+          child: Text(
+            title,
+            style: const TextStyle(
+              fontSize: 24,
+              fontWeight: FontWeight.bold,
+              letterSpacing: -0.5,
             ),
-            ElevatedButton(
-              onPressed: () {},
-              style: ElevatedButton.styleFrom(
-                backgroundColor: const Color(0xFF2563EB),
-                foregroundColor: Colors.white,
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 20,
-                  vertical: 12,
-                ),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(4),
-                ),
-              ),
-              child: Text(
-                l10n.downloadCV,
-                style: const TextStyle(
-                  fontSize: 12,
-                  fontWeight: FontWeight.w600,
-                  letterSpacing: 0.5,
-                ),
-              ),
-            ),
-          ],
+          ),
         ),
-        const SizedBox(height: 24),
-        // Job cards
-        ExperienceCard(
-          period: l10n.job1Period,
-          title: l10n.job1Title,
-          company: l10n.confidential,
-          location: '',
-          descriptions: [l10n.job1Desc1, l10n.job1Desc2, l10n.job1Desc3],
-          isConfidential: true,
-        ),
-        const SizedBox(height: 16),
-        ExperienceCard(
-          period: l10n.job2Period,
-          title: l10n.job2Title,
-          company: l10n.job2Company,
-          location: 'Taiwan',
-          descriptions: [l10n.job2Desc1, l10n.job2Desc2, l10n.job2Desc3],
-        ),
-        const SizedBox(height: 16),
-        ExperienceCard(
-          period: l10n.job3Period,
-          title: l10n.job3Title,
-          company: l10n.job3Company,
-          location: 'Taiwan',
-          descriptions: [l10n.job3Desc1, l10n.job3Desc2],
-        ),
-        const SizedBox(height: 16),
-        ExperienceCard(
-          period: l10n.job4Period,
-          title: l10n.job4Title,
-          company: l10n.job4Company,
-          location: 'Taiwan',
-          descriptions: [l10n.job4Desc1, l10n.job4Desc2, l10n.job4Desc3],
-        ),
+        // Content Column
+        Expanded(flex: 2, child: content),
       ],
     );
   }
 
-  Widget _buildEducationSection(
-    BuildContext context,
-    AppLocalizations l10n,
-    bool isDesktop,
-  ) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          l10n.educationSection,
-          style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-        ),
-        const SizedBox(height: 24),
-        Container(
-          width: double.infinity,
-          padding: const EdgeInsets.all(24),
-          decoration: BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.circular(4),
-          ),
-          child: Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Expanded(
-                flex: 2,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const Text(
-                      '2010 - 2014',
-                      style: TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.bold,
-                        color: Color(0xFF2563EB),
-                      ),
-                    ),
-                    const SizedBox(height: 8),
-                    Text(
-                      l10n.eduSchool.toUpperCase(),
-                      style: const TextStyle(
-                        fontSize: 13,
-                        fontWeight: FontWeight.w600,
-                        letterSpacing: 0.5,
-                      ),
-                    ),
-                    const SizedBox(height: 4),
-                    Text(
-                      l10n.eduDegree,
-                      style: TextStyle(fontSize: 13, color: Colors.grey[600]),
-                    ),
-                  ],
-                ),
+  Widget _buildResumeItem({
+    required String period,
+    required String title,
+    required String subtitle,
+    required String description,
+  }) {
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 48),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          // Period
+          SizedBox(
+            width: 120,
+            child: Text(
+              period,
+              style: const TextStyle(
+                fontSize: 14,
+                fontWeight: FontWeight.w500,
+                color: Colors.black,
               ),
-              const SizedBox(width: 32),
-              Expanded(
-                flex: 3,
-                child: Text(
-                  l10n.eduMajor,
-                  style: TextStyle(
-                    fontSize: 14,
-                    color: Colors.grey[700],
-                    height: 1.5,
+            ),
+          ),
+          const SizedBox(width: 24),
+          // Details
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  title,
+                  style: const TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.w700,
                   ),
                 ),
-              ),
-            ],
+                if (subtitle.isNotEmpty) ...[
+                  const SizedBox(height: 4),
+                  Text(
+                    subtitle,
+                    style: TextStyle(
+                      fontSize: 14,
+                      fontWeight: FontWeight.w500,
+                      color: Colors.grey[800],
+                    ),
+                  ),
+                ],
+                if (description.isNotEmpty) ...[
+                  const SizedBox(height: 12),
+                  Text(
+                    description,
+                    style: TextStyle(
+                      fontSize: 14,
+                      color: Colors.grey[600],
+                      height: 1.6,
+                    ),
+                  ),
+                ],
+              ],
+            ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }

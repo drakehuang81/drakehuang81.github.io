@@ -17,7 +17,9 @@
   "viewResume": "RESUME",
 
   "resumeTitle": "Resume",
+  "workExperience": "Work Experience",
   "experienceSection": "Experience",
+  "skillsSection": "Skills",
   "educationSection": "Education",
   "downloadCV": "DOWNLOAD CV",
   "confidential": "Confidential",
@@ -60,7 +62,10 @@
   "eduDegree": "Bachelor's Degree",
   "eduMajor": "Department of Information and Library Science",
 
-  "contactTitle": "Let's talk",
+  "contactTitle": "Contact",
+  "contactSubtitle": "Looking forward to hearing from you",
+  "phone": "Phone",
+  "submit": "Submit",
   "firstName": "First Name",
   "lastName": "Last Name",
   "email": "Email",

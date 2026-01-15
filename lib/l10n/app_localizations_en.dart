@@ -53,7 +53,13 @@ class AppLocalizationsEn extends AppLocalizations {
   String get resumeTitle => 'Resume';
 
   @override
+  String get workExperience => 'Work Experience';
+
+  @override
   String get experienceSection => 'Experience';
+
+  @override
+  String get skillsSection => 'Skills';
 
   @override
   String get educationSection => 'Education';
@@ -158,7 +164,16 @@ class AppLocalizationsEn extends AppLocalizations {
   String get eduMajor => 'Department of Information and Library Science';
 
   @override
-  String get contactTitle => 'Let\'s talk';
+  String get contactTitle => 'Contact';
+
+  @override
+  String get contactSubtitle => 'Looking forward to hearing from you';
+
+  @override
+  String get phone => 'Phone';
+
+  @override
+  String get submit => 'Submit';
 
   @override
   String get firstName => 'First Name';
