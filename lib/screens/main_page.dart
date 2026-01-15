@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import '../core/locale_provider.dart';
+import '../core/terminal_theme.dart';
 import '../widgets/nav_bar.dart';
 import '../widgets/about_me_section.dart';
 import '../widgets/resume_section.dart';
 import '../widgets/contact_section.dart';
+import '../widgets/matrix_rain_background.dart';
 
 class MainPage extends StatefulWidget {
   final LocaleProvider localeProvider;
@@ -20,29 +22,44 @@ class _MainPageState extends State<MainPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFFF4F4F4),
-      body: Column(
-        children: [
-          NavBar(
-            localeProvider: widget.localeProvider,
-            selectedIndex: _selectedIndex,
-            onAboutMeTap: () => setState(() => _selectedIndex = 0),
-            onResumeTap: () => setState(() => _selectedIndex = 1),
-            onContactTap: () => setState(() => _selectedIndex = 2),
-          ),
-          Expanded(
-            child: IndexedStack(
-              index: _selectedIndex,
-              children: [
-                _buildAboutMeTab(),
-                _buildResumeTab(),
-                _buildContactTab(),
-              ],
+      backgroundColor: TerminalTheme.background,
+      body: MatrixRainBackground(
+        opacity: 0.08,
+        child: Column(
+          children: [
+            NavBar(
+              localeProvider: widget.localeProvider,
+              selectedIndex: _selectedIndex,
+              onAboutMeTap: () => setState(() => _selectedIndex = 0),
+              onResumeTap: () => setState(() => _selectedIndex = 1),
+              onContactTap: () => setState(() => _selectedIndex = 2),
             ),
-          ),
-        ],
+            Expanded(
+              child: AnimatedSwitcher(
+                duration: const Duration(milliseconds: 400),
+                transitionBuilder: (Widget child, Animation<double> animation) {
+                  return FadeTransition(opacity: animation, child: child);
+                },
+                child: _buildCurrentTab(),
+              ),
+            ),
+          ],
+        ),
       ),
     );
+  }
+
+  Widget _buildCurrentTab() {
+    switch (_selectedIndex) {
+      case 0:
+        return KeyedSubtree(key: const ValueKey(0), child: _buildAboutMeTab());
+      case 1:
+        return KeyedSubtree(key: const ValueKey(1), child: _buildResumeTab());
+      case 2:
+        return KeyedSubtree(key: const ValueKey(2), child: _buildContactTab());
+      default:
+        return const SizedBox();
+    }
   }
 
   Widget _buildAboutMeTab() {
@@ -64,7 +81,7 @@ class _MainPageState extends State<MainPage> {
 
   Widget _buildCenteredScrollable(Widget child) {
     return Container(
-      color: const Color(0xFFF4F4F4),
+      color: Colors.transparent,
       width: double.infinity,
       height: double.infinity,
       child: LayoutBuilder(

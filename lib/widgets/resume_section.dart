@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../l10n/app_localizations.dart';
+import '../core/terminal_theme.dart';
 
 class ResumeSection extends StatelessWidget {
   const ResumeSection({super.key});
@@ -10,7 +11,7 @@ class ResumeSection extends StatelessWidget {
     final isDesktop = MediaQuery.of(context).size.width >= 800;
 
     return Container(
-      color: const Color(0xFFF4F4F4),
+      color: TerminalTheme.background,
       padding: const EdgeInsets.symmetric(vertical: 64),
       child: Center(
         child: Container(
@@ -19,16 +20,9 @@ class ResumeSection extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              // Page Title
-              Text(
-                l10n.resumeTitle,
-                style: const TextStyle(
-                  fontSize: 48,
-                  fontWeight: FontWeight.w900,
-                  letterSpacing: -1,
-                ),
-              ),
-              const SizedBox(height: 80),
+              // Page Title - Terminal style
+              Text(l10n.resumeTitle, style: TerminalTheme.titleLarge),
+              const SizedBox(height: 64),
 
               // Work Experience Section
               _buildSection(
@@ -83,7 +77,7 @@ class ResumeSection extends StatelessWidget {
                 isDesktop: isDesktop,
               ),
 
-              const Divider(height: 80, thickness: 1, color: Color(0xFFE0E0E0)),
+              _buildDivider(),
 
               // Skills Section
               _buildSection(
@@ -122,7 +116,7 @@ class ResumeSection extends StatelessWidget {
                 isDesktop: isDesktop,
               ),
 
-              const Divider(height: 80, thickness: 1, color: Color(0xFFE0E0E0)),
+              _buildDivider(),
 
               // Education Section
               _buildSection(
@@ -138,24 +132,24 @@ class ResumeSection extends StatelessWidget {
               ),
 
               const SizedBox(height: 80),
-
-              /*
-              // Download Button at bottom
-              Align(
-                alignment: Alignment.centerRight,
-                child: TextButton.icon(
-                  onPressed: () {},
-                  icon: const Icon(Icons.download, size: 18),
-                  label: Text(l10n.downloadCV),
-                  style: TextButton.styleFrom(
-                    foregroundColor: Colors.black,
-                    textStyle: const TextStyle(fontWeight: FontWeight.bold),
-                  ),
-                ),
-              ),
-              */
             ],
           ),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildDivider() {
+    return Container(
+      height: 1,
+      margin: const EdgeInsets.symmetric(vertical: 48),
+      decoration: BoxDecoration(
+        gradient: LinearGradient(
+          colors: [
+            TerminalTheme.borderColor.withOpacity(0),
+            TerminalTheme.borderColor,
+            TerminalTheme.borderColor.withOpacity(0),
+          ],
         ),
       ),
     );
@@ -171,10 +165,7 @@ class ResumeSection extends StatelessWidget {
       return Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
-            title,
-            style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-          ),
+          Text(title, style: TerminalTheme.titleSmall),
           const SizedBox(height: 32),
           content,
         ],
@@ -184,17 +175,7 @@ class ResumeSection extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         // Section Title Column
-        Expanded(
-          flex: 1,
-          child: Text(
-            title,
-            style: const TextStyle(
-              fontSize: 24,
-              fontWeight: FontWeight.bold,
-              letterSpacing: -0.5,
-            ),
-          ),
-        ),
+        Expanded(flex: 1, child: Text(title, style: TerminalTheme.titleSmall)),
         // Content Column
         Expanded(flex: 2, child: content),
       ],
@@ -208,19 +189,17 @@ class ResumeSection extends StatelessWidget {
     required String description,
   }) {
     return Padding(
-      padding: const EdgeInsets.only(bottom: 48),
+      padding: const EdgeInsets.only(bottom: 40),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          // Period
+          // Period - Terminal date style
           SizedBox(
-            width: 120,
+            width: 140,
             child: Text(
-              period,
-              style: const TextStyle(
-                fontSize: 14,
-                fontWeight: FontWeight.w500,
-                color: Colors.black,
+              'Date: $period',
+              style: TerminalTheme.bodySmall.copyWith(
+                color: TerminalTheme.terminalGreenMuted,
               ),
             ),
           ),
@@ -230,21 +209,42 @@ class ResumeSection extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
-                  title,
-                  style: const TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.w700,
+                // Title with Role prefix
+                RichText(
+                  text: TextSpan(
+                    children: [
+                      TextSpan(
+                        text: 'Role: ',
+                        style: TerminalTheme.bodySmall.copyWith(
+                          color: TerminalTheme.terminalGreenMuted,
+                        ),
+                      ),
+                      TextSpan(
+                        text: title,
+                        style: TerminalTheme.bodyMedium.copyWith(
+                          fontWeight: FontWeight.bold,
+                          color: TerminalTheme.terminalGreen,
+                        ),
+                      ),
+                    ],
                   ),
                 ),
                 if (subtitle.isNotEmpty) ...[
                   const SizedBox(height: 4),
-                  Text(
-                    subtitle,
-                    style: TextStyle(
-                      fontSize: 14,
-                      fontWeight: FontWeight.w500,
-                      color: Colors.grey[800],
+                  RichText(
+                    text: TextSpan(
+                      children: [
+                        TextSpan(
+                          text: 'Company: ',
+                          style: TerminalTheme.bodySmall.copyWith(
+                            color: TerminalTheme.terminalGreenMuted,
+                          ),
+                        ),
+                        TextSpan(
+                          text: subtitle,
+                          style: TerminalTheme.bodyMedium,
+                        ),
+                      ],
                     ),
                   ),
                 ],
@@ -252,11 +252,7 @@ class ResumeSection extends StatelessWidget {
                   const SizedBox(height: 12),
                   Text(
                     description,
-                    style: TextStyle(
-                      fontSize: 14,
-                      color: Colors.grey[600],
-                      height: 1.6,
-                    ),
+                    style: TerminalTheme.bodySmall.copyWith(height: 1.8),
                   ),
                 ],
               ],

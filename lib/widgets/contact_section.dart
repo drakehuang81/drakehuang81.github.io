@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../l10n/app_localizations.dart';
+import '../core/terminal_theme.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
@@ -21,21 +22,33 @@ class ContactSection extends StatefulWidget {
   State<ContactSection> createState() => _ContactSectionState();
 }
 
-class _ContactSectionState extends State<ContactSection> {
+class _ContactSectionState extends State<ContactSection>
+    with SingleTickerProviderStateMixin {
   final _formKey = GlobalKey<FormState>();
-  final _firstNameController = TextEditingController();
-  final _lastNameController = TextEditingController();
+  final _nameController = TextEditingController();
   final _emailController = TextEditingController();
   final _subjectController = TextEditingController();
   final _messageController = TextEditingController();
 
+  late AnimationController _cursorController;
+
+  @override
+  void initState() {
+    super.initState();
+    _cursorController = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 530),
+    )..repeat(reverse: true);
+    _loadRecaptchaScript();
+  }
+
   @override
   void dispose() {
-    _firstNameController.dispose();
-    _lastNameController.dispose();
+    _nameController.dispose();
     _emailController.dispose();
     _subjectController.dispose();
     _messageController.dispose();
+    _cursorController.dispose();
     super.dispose();
   }
 
@@ -45,15 +58,21 @@ class _ContactSectionState extends State<ContactSection> {
     final isDesktop = MediaQuery.of(context).size.width >= 800;
 
     return Container(
-      color: const Color(0xFFF4F4F4),
+      color: TerminalTheme.background,
       padding: const EdgeInsets.symmetric(vertical: 64),
       child: Center(
         child: Container(
           constraints: const BoxConstraints(maxWidth: 1000),
           padding: EdgeInsets.symmetric(horizontal: isDesktop ? 48 : 24),
-          child: isDesktop
-              ? _buildDesktopLayout(context, l10n)
-              : _buildMobileLayout(context, l10n),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              if (isDesktop)
+                _buildDesktopLayout(context, l10n)
+              else
+                _buildMobileLayout(context, l10n),
+            ],
+          ),
         ),
       ),
     );
@@ -69,30 +88,17 @@ class _ContactSectionState extends State<ContactSection> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(
-                l10n.contactTitle,
-                style: const TextStyle(
-                  fontSize: 32,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
+              Text(l10n.contactTitle, style: TerminalTheme.titleLarge),
               const SizedBox(height: 16),
-              Text(
-                l10n.contactSubtitle,
-                style: TextStyle(
-                  fontSize: 14,
-                  fontWeight: FontWeight.w400,
-                  color: Colors.grey[800],
-                ),
-              ),
+              Text(l10n.contactSubtitle, style: TerminalTheme.bodyMedium),
               const SizedBox(height: 48),
               _buildSocialButton(
-                assetPath: 'assets/images/github-sign.png',
+                icon: Icons.code,
                 label: 'GitHub',
                 url: 'https://github.com/drakehuang81',
               ),
               _buildSocialButton(
-                assetPath: 'assets/images/linkedin.png',
+                icon: Icons.work_outline,
                 label: 'LinkedIn',
                 url: 'https://www.linkedin.com/in/drake-huang-b26028179',
               ),
@@ -110,27 +116,17 @@ class _ContactSectionState extends State<ContactSection> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(
-          l10n.contactTitle,
-          style: const TextStyle(fontSize: 32, fontWeight: FontWeight.bold),
-        ),
+        Text(l10n.contactTitle, style: TerminalTheme.titleLarge),
         const SizedBox(height: 16),
-        Text(
-          l10n.contactSubtitle,
-          style: TextStyle(
-            fontSize: 14,
-            fontWeight: FontWeight.w400,
-            color: Colors.grey[800],
-          ),
-        ),
+        Text(l10n.contactSubtitle, style: TerminalTheme.bodyMedium),
         const SizedBox(height: 32),
         _buildSocialButton(
-          assetPath: 'assets/images/github-sign.png',
+          icon: Icons.code,
           label: 'GitHub',
           url: 'https://github.com/drakehuang81',
         ),
         _buildSocialButton(
-          assetPath: 'assets/images/linkedin.png',
+          icon: Icons.work_outline,
           label: 'LinkedIn',
           url: 'https://www.linkedin.com/in/drake-huang-b26028179',
         ),
@@ -146,75 +142,60 @@ class _ContactSectionState extends State<ContactSection> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Row(
-            children: [
-              Expanded(
-                child: _buildTextField(
-                  l10n.firstName,
-                  _firstNameController,
-                  required: true,
-                ),
-              ),
-              const SizedBox(width: 24),
-              Expanded(
-                child: _buildTextField(
-                  l10n.lastName,
-                  _lastNameController,
-                  required: true,
-                ),
-              ),
-            ],
+          _buildTerminalInput(
+            label: 'Name',
+            controller: _nameController,
+            required: true,
           ),
-          const SizedBox(height: 24),
-          Row(
-            children: [
-              Expanded(
-                child: _buildTextField(
-                  l10n.email,
-                  _emailController,
-                  required: true,
-                ),
-              ),
-              const SizedBox(width: 24),
-              Expanded(
-                child: _buildTextField(l10n.subject, _subjectController),
-              ),
-            ],
+          const SizedBox(height: 20),
+          _buildTerminalInput(
+            label: 'Email',
+            controller: _emailController,
+            required: true,
           ),
-          const SizedBox(height: 24),
-          _buildTextField(l10n.message, _messageController, maxLines: 4),
+          const SizedBox(height: 20),
+          _buildTerminalInput(label: 'Subject', controller: _subjectController),
+          const SizedBox(height: 20),
+          _buildTerminalInput(
+            label: 'Message',
+            controller: _messageController,
+            maxLines: 4,
+          ),
           const SizedBox(height: 32),
-          // Submit Button
-          SizedBox(
-            width: 200, // or double.infinity for full width
-            height: 48,
-            child: ElevatedButton(
-              onPressed: _isSending ? null : _handleSubmit,
-              style: ElevatedButton.styleFrom(
-                backgroundColor: const Color(0xFFE5A013), // Yellow
-                disabledBackgroundColor: const Color(0xFFE5A013).withAlpha(128),
-                foregroundColor: Colors.black,
-                elevation: 0,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(24),
-                ),
-              ),
-              child: _isSending
-                  ? const SizedBox(
-                      width: 24,
-                      height: 24,
-                      child: CircularProgressIndicator(
-                        strokeWidth: 2,
-                        valueColor: AlwaysStoppedAnimation<Color>(Colors.black),
-                      ),
-                    )
-                  : Text(
-                      l10n.submit,
-                      style: const TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.bold,
+          // Terminal Submit Button
+          InkWell(
+            onTap: _isSending ? null : _handleSubmit,
+            child: Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Text('SUBMIT > ', style: TerminalTheme.buttonText),
+                if (_isSending)
+                  SizedBox(
+                    width: 16,
+                    height: 16,
+                    child: CircularProgressIndicator(
+                      strokeWidth: 2,
+                      valueColor: AlwaysStoppedAnimation<Color>(
+                        TerminalTheme.terminalGreen,
                       ),
                     ),
+                  )
+                else
+                  Container(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 12,
+                      vertical: 6,
+                    ),
+                    decoration: BoxDecoration(
+                      border: Border.all(
+                        color: TerminalTheme.terminalGreen,
+                        width: 1,
+                      ),
+                      borderRadius: BorderRadius.circular(2),
+                    ),
+                    child: Text('[ENTER]', style: TerminalTheme.buttonText),
+                  ),
+              ],
             ),
           ),
         ],
@@ -222,71 +203,79 @@ class _ContactSectionState extends State<ContactSection> {
     );
   }
 
-  Widget _buildTextField(
-    String label,
-    TextEditingController controller, {
+  Widget _buildTerminalInput({
+    required String label,
+    required TextEditingController controller,
     bool required = false,
     int maxLines = 1,
   }) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
+    return Row(
+      crossAxisAlignment: maxLines > 1
+          ? CrossAxisAlignment.start
+          : CrossAxisAlignment.center,
       children: [
-        RichText(
-          text: TextSpan(
-            text: label,
-            style: TextStyle(
-              fontSize: 13,
-              color: Colors.grey[700],
-              fontWeight: FontWeight.w500,
+        SizedBox(
+          width: 80,
+          child: Text('$label >', style: TerminalTheme.inputLabel),
+        ),
+        Expanded(
+          child: TextFormField(
+            controller: controller,
+            maxLines: maxLines,
+            style: TerminalTheme.bodyMedium,
+            cursorColor: TerminalTheme.cursorColor,
+            cursorWidth: 10,
+            decoration: InputDecoration(
+              filled: true,
+              fillColor: TerminalTheme.inputBackground,
+              contentPadding: const EdgeInsets.symmetric(
+                horizontal: 12,
+                vertical: 12,
+              ),
+              border: InputBorder.none,
+              enabledBorder: UnderlineInputBorder(
+                borderSide: BorderSide(
+                  color: TerminalTheme.borderColor,
+                  width: 1,
+                ),
+              ),
+              focusedBorder: UnderlineInputBorder(
+                borderSide: BorderSide(
+                  color: TerminalTheme.terminalGreen,
+                  width: 2,
+                ),
+              ),
+              errorBorder: const UnderlineInputBorder(
+                borderSide: BorderSide(color: Colors.red, width: 1),
+              ),
+              focusedErrorBorder: const UnderlineInputBorder(
+                borderSide: BorderSide(color: Colors.red, width: 2),
+              ),
             ),
-            children: required
-                ? const [
-                    TextSpan(
-                      text: ' *',
-                      style: TextStyle(color: Colors.black),
-                    ),
-                  ]
+            validator: required
+                ? (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Required';
+                    }
+                    return null;
+                  }
                 : null,
           ),
         ),
-        const SizedBox(height: 8),
-        TextFormField(
-          controller: controller,
-          maxLines: maxLines,
-          decoration: InputDecoration(
-            filled: true,
-            fillColor: Colors
-                .transparent, // Transparent as per image look? Or very light grey? Image looks like thin border.
-            // Let's go with a very light background + border to match the clean look
-            contentPadding: const EdgeInsets.symmetric(
-              horizontal: 12,
-              vertical: 12,
-            ),
-            enabledBorder: OutlineInputBorder(
-              borderSide: BorderSide(color: Colors.grey[400]!, width: 0.5),
-              borderRadius: BorderRadius.circular(0), // Rectangular look
-            ),
-            focusedBorder: OutlineInputBorder(
-              borderSide: const BorderSide(color: Colors.black, width: 1),
-              borderRadius: BorderRadius.circular(0),
-            ),
-            errorBorder: OutlineInputBorder(
-              borderSide: const BorderSide(color: Colors.red, width: 0.5),
-              borderRadius: BorderRadius.circular(0),
-            ),
-            focusedErrorBorder: OutlineInputBorder(
-              borderSide: const BorderSide(color: Colors.red, width: 1),
-              borderRadius: BorderRadius.circular(0),
-            ),
-          ),
-          validator: required
-              ? (value) {
-                  if (value == null || value.isEmpty) {
-                    return 'Required';
-                  }
-                  return null;
-                }
-              : null,
+        // Blinking cursor indicator
+        AnimatedBuilder(
+          animation: _cursorController,
+          builder: (context, child) {
+            return Opacity(
+              opacity: _cursorController.value * 0.3,
+              child: Container(
+                width: 10,
+                height: 20,
+                margin: const EdgeInsets.only(left: 4),
+                color: TerminalTheme.cursorColor,
+              ),
+            );
+          },
         ),
       ],
     );
@@ -295,17 +284,9 @@ class _ContactSectionState extends State<ContactSection> {
   bool _isSending = false;
   DateTime? _lastSendTime;
 
-  // JS Interop for reCAPTCHA
-  @override
-  void initState() {
-    super.initState();
-    _loadRecaptchaScript();
-  }
-
   void _loadRecaptchaScript() {
     const siteKey = String.fromEnvironment('RECAPTCHA_SITE_KEY');
     if (siteKey.isNotEmpty) {
-      // Check if script is already loaded to avoid duplicates
       final existingScript = web.document.querySelector(
         'script[src*="recaptcha/api.js"]',
       );
@@ -330,22 +311,18 @@ class _ContactSectionState extends State<ContactSection> {
     }
   }
 
-  // Real implementation below using a mix of JS and dart:html/web
-  // Since we are on Flutter 3.10+, we might be in a transition phase.
-  // Let's safe-guard this.
-
   Future<void> _handleSubmit() async {
     if (_formKey.currentState!.validate()) {
-      // 1. Throttling
       if (_lastSendTime != null &&
           DateTime.now().difference(_lastSendTime!) <
               const Duration(seconds: 60)) {
         ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(
+          SnackBar(
             content: Text(
               'Please wait a minute before sending another message.',
+              style: TerminalTheme.bodySmall.copyWith(color: Colors.black),
             ),
-            backgroundColor: Colors.orange,
+            backgroundColor: TerminalTheme.terminalGreen,
           ),
         );
         return;
@@ -355,7 +332,6 @@ class _ContactSectionState extends State<ContactSection> {
         _isSending = true;
       });
 
-      // 2. Get keys
       const serviceId = String.fromEnvironment('EMAILJS_SERVICE_ID');
       const templateId = String.fromEnvironment('EMAILJS_TEMPLATE_ID');
       const publicKey = String.fromEnvironment('EMAILJS_PUBLIC_KEY');
@@ -375,7 +351,6 @@ class _ContactSectionState extends State<ContactSection> {
       }
 
       try {
-        // 3. Get reCAPTCHA Token
         String? recaptchaToken;
         if (siteKey.isNotEmpty) {
           recaptchaToken = await _executeRecaptcha(siteKey);
@@ -396,29 +371,28 @@ class _ContactSectionState extends State<ContactSection> {
             'template_id': templateId,
             'user_id': publicKey,
             'template_params': {
-              'from_name': _firstNameController.text,
-              'last_name': _lastNameController.text,
+              'from_name': _nameController.text,
               'from_email': _emailController.text,
               'subject': _subjectController.text,
               'message': _messageController.text,
-              'g-recaptcha-response': recaptchaToken, // Add token here
+              'g-recaptcha-response': recaptchaToken,
             },
           }),
         );
-        // ...
 
         if (response.body == 'OK') {
-          _lastSendTime = DateTime.now(); // Update last send time
+          _lastSendTime = DateTime.now();
           if (mounted) {
             ScaffoldMessenger.of(context).showSnackBar(
-              const SnackBar(
-                content: Text('Message sent successfully!'),
-                backgroundColor: Colors.green,
+              SnackBar(
+                content: Text(
+                  'Message sent successfully!',
+                  style: TerminalTheme.bodySmall.copyWith(color: Colors.black),
+                ),
+                backgroundColor: TerminalTheme.terminalGreen,
               ),
             );
-            // Clear form
-            _firstNameController.clear();
-            _lastNameController.clear();
+            _nameController.clear();
             _emailController.clear();
             _subjectController.clear();
             _messageController.clear();
@@ -455,7 +429,7 @@ class _ContactSectionState extends State<ContactSection> {
   }
 
   Widget _buildSocialButton({
-    required String assetPath,
+    required IconData icon,
     required String label,
     required String url,
   }) {
@@ -463,20 +437,18 @@ class _ContactSectionState extends State<ContactSection> {
       padding: const EdgeInsets.only(bottom: 16),
       child: InkWell(
         onTap: () => _launchUrl(url),
-        borderRadius: BorderRadius.circular(8),
+        borderRadius: BorderRadius.circular(4),
         child: Padding(
-          padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 0),
+          padding: const EdgeInsets.symmetric(vertical: 8),
           child: Row(
             mainAxisSize: MainAxisSize.min,
             children: [
-              Image.asset(assetPath, width: 24, height: 24),
+              Icon(icon, size: 20, color: TerminalTheme.terminalGreenBright),
               const SizedBox(width: 12),
               Text(
                 label,
-                style: const TextStyle(
-                  fontSize: 16,
+                style: TerminalTheme.bodyMedium.copyWith(
                   fontWeight: FontWeight.w600,
-                  color: Colors.black,
                 ),
               ),
             ],

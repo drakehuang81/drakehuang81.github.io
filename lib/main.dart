@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'l10n/app_localizations.dart';
-import 'core/app_theme.dart';
+import 'core/terminal_theme.dart';
 import 'core/locale_provider.dart';
 import 'screens/main_page.dart';
 
@@ -45,7 +45,7 @@ class _MyAppState extends State<MyApp> {
     return MaterialApp(
       title: 'Resume - Drake Huang',
       debugShowCheckedModeBanner: false,
-      theme: AppTheme.lightTheme,
+      theme: TerminalTheme.themeData,
       locale: _localeProvider.locale,
       localizationsDelegates: const [
         AppLocalizations.delegate,
