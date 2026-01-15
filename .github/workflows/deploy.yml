@@ -31,7 +31,8 @@ jobs:
           flutter build web --release --base-href "/" \
             --dart-define=EMAILJS_SERVICE_ID="${{ secrets.EMAILJS_SERVICE_ID }}" \
             --dart-define=EMAILJS_TEMPLATE_ID="${{ secrets.EMAILJS_TEMPLATE_ID }}" \
-            --dart-define=EMAILJS_PUBLIC_KEY="${{ secrets.EMAILJS_PUBLIC_KEY }}"
+            --dart-define=EMAILJS_PUBLIC_KEY="${{ secrets.EMAILJS_PUBLIC_KEY }}" \
+            --dart-define=RECAPTCHA_SITE_KEY="${{ secrets.RECAPTCHA_SITE_KEY }}"
         
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3

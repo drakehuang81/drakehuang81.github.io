@@ -3,6 +3,16 @@ import '../l10n/app_localizations.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
+import 'package:web/web.dart' as web;
+import 'dart:js_interop';
+
+@JS('grecaptcha')
+external GreCaptcha get grecaptcha;
+
+@JS()
+extension type GreCaptcha._(JSObject _) implements JSObject {
+  external JSPromise<JSString> execute(String siteKey, JSObject? options);
+}
 
 class ContactSection extends StatefulWidget {
   const ContactSection({super.key});
@@ -285,9 +295,48 @@ class _ContactSectionState extends State<ContactSection> {
   bool _isSending = false;
   DateTime? _lastSendTime;
 
+  // JS Interop for reCAPTCHA
+  @override
+  void initState() {
+    super.initState();
+    _loadRecaptchaScript();
+  }
+
+  void _loadRecaptchaScript() {
+    const siteKey = String.fromEnvironment('RECAPTCHA_SITE_KEY');
+    if (siteKey.isNotEmpty) {
+      // Check if script is already loaded to avoid duplicates
+      final existingScript = web.document.querySelector(
+        'script[src*="recaptcha/api.js"]',
+      );
+      if (existingScript != null) return;
+
+      final script =
+          web.document.createElement('script') as web.HTMLScriptElement;
+      script.src = 'https://www.google.com/recaptcha/api.js?render=$siteKey';
+      script.async = true;
+      web.document.head!.append(script);
+    }
+  }
+
+  Future<String?> _executeRecaptcha(String siteKey) async {
+    try {
+      final promise = grecaptcha.execute(siteKey, null);
+      final result = await promise.toDart;
+      return result.toDart;
+    } catch (e) {
+      debugPrint('reCAPTCHA execution failed: $e');
+      return null;
+    }
+  }
+
+  // Real implementation below using a mix of JS and dart:html/web
+  // Since we are on Flutter 3.10+, we might be in a transition phase.
+  // Let's safe-guard this.
+
   Future<void> _handleSubmit() async {
     if (_formKey.currentState!.validate()) {
-      // 1. Throttling: Check if user sent a message recently (e.g., last 60 seconds)
+      // 1. Throttling
       if (_lastSendTime != null &&
           DateTime.now().difference(_lastSendTime!) <
               const Duration(seconds: 60)) {
@@ -306,11 +355,11 @@ class _ContactSectionState extends State<ContactSection> {
         _isSending = true;
       });
 
-      // 2. Get keys from Environment Variables
-      // Note: Use --dart-define=EMAILJS_SERVICE_ID=... when running/building
+      // 2. Get keys
       const serviceId = String.fromEnvironment('EMAILJS_SERVICE_ID');
       const templateId = String.fromEnvironment('EMAILJS_TEMPLATE_ID');
       const publicKey = String.fromEnvironment('EMAILJS_PUBLIC_KEY');
+      const siteKey = String.fromEnvironment('RECAPTCHA_SITE_KEY');
 
       if (serviceId.isEmpty || templateId.isEmpty || publicKey.isEmpty) {
         if (mounted) {
@@ -326,12 +375,20 @@ class _ContactSectionState extends State<ContactSection> {
       }
 
       try {
+        // 3. Get reCAPTCHA Token
+        String? recaptchaToken;
+        if (siteKey.isNotEmpty) {
+          recaptchaToken = await _executeRecaptcha(siteKey);
+          if (recaptchaToken == null) {
+            throw Exception('Failed to get reCAPTCHA token');
+          }
+        }
+
         final url = Uri.parse('https://api.emailjs.com/api/v1.0/email/send');
         final response = await http.post(
           url,
           headers: {
-            'origin':
-                'http://localhost', // Required by some browser environments
+            'origin': 'http://localhost',
             'Content-Type': 'application/json',
           },
           body: json.encode({
@@ -340,14 +397,15 @@ class _ContactSectionState extends State<ContactSection> {
             'user_id': publicKey,
             'template_params': {
               'from_name': _firstNameController.text,
-              'last_name':
-                  _lastNameController.text, // If your template supports it
+              'last_name': _lastNameController.text,
               'from_email': _emailController.text,
               'subject': _subjectController.text,
               'message': _messageController.text,
+              'g-recaptcha-response': recaptchaToken, // Add token here
             },
           }),
         );
+        // ...
 
         if (response.body == 'OK') {
           _lastSendTime = DateTime.now(); // Update last send time
