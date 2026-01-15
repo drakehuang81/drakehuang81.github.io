@@ -29,7 +29,23 @@
   <!-- Favicon -->
   <link rel="icon" type="image/png" href="favicon.png"/>
 
-  <title>resume</title>
+  <title>Drake Huang - Senior iOS Developer</title>
+  <script>
+    (function() {
+      var originalTitle = "Drake Huang - Senior iOS Developer | ";
+      var title = originalTitle;
+      var speed = 200; // Milliseconds delay
+
+      function scrollTitle() {
+        title = title.substring(1) + title.substring(0, 1);
+        document.title = title;
+        setTimeout(scrollTitle, speed);
+      }
+      
+      // Start scrolling after a short delay
+      setTimeout(scrollTitle, 1000);
+    })();
+  </script>
   <link rel="manifest" href="manifest.json">
 </head>
 <body>
