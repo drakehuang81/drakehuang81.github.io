@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import '../l10n/app_localizations.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'dart:convert';
+import 'package:http/http.dart' as http;
 
 class ContactSection extends StatefulWidget {
   const ContactSection({super.key});
@@ -177,22 +179,32 @@ class _ContactSectionState extends State<ContactSection> {
             width: 200, // or double.infinity for full width
             height: 48,
             child: ElevatedButton(
-              onPressed: _handleSubmit,
+              onPressed: _isSending ? null : _handleSubmit,
               style: ElevatedButton.styleFrom(
                 backgroundColor: const Color(0xFFE5A013), // Yellow
+                disabledBackgroundColor: const Color(0xFFE5A013).withAlpha(128),
                 foregroundColor: Colors.black,
                 elevation: 0,
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(24),
                 ),
               ),
-              child: Text(
-                l10n.submit,
-                style: const TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
+              child: _isSending
+                  ? const SizedBox(
+                      width: 24,
+                      height: 24,
+                      child: CircularProgressIndicator(
+                        strokeWidth: 2,
+                        valueColor: AlwaysStoppedAnimation<Color>(Colors.black),
+                      ),
+                    )
+                  : Text(
+                      l10n.submit,
+                      style: const TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
             ),
           ),
         ],
@@ -270,11 +282,117 @@ class _ContactSectionState extends State<ContactSection> {
     );
   }
 
-  void _handleSubmit() {
+  bool _isSending = false;
+  DateTime? _lastSendTime;
+
+  Future<void> _handleSubmit() async {
     if (_formKey.currentState!.validate()) {
-      ScaffoldMessenger.of(
-        context,
-      ).showSnackBar(const SnackBar(content: Text('Message sent!')));
+      // 1. Throttling: Check if user sent a message recently (e.g., last 60 seconds)
+      if (_lastSendTime != null &&
+          DateTime.now().difference(_lastSendTime!) <
+              const Duration(seconds: 60)) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+            content: Text(
+              'Please wait a minute before sending another message.',
+            ),
+            backgroundColor: Colors.orange,
+          ),
+        );
+        return;
+      }
+
+      setState(() {
+        _isSending = true;
+      });
+
+      // 2. Get keys from Environment Variables
+      // Note: Use --dart-define=EMAILJS_SERVICE_ID=... when running/building
+      const serviceId = String.fromEnvironment('EMAILJS_SERVICE_ID');
+      const templateId = String.fromEnvironment('EMAILJS_TEMPLATE_ID');
+      const publicKey = String.fromEnvironment('EMAILJS_PUBLIC_KEY');
+
+      if (serviceId.isEmpty || templateId.isEmpty || publicKey.isEmpty) {
+        if (mounted) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(
+              content: Text('EmailJS configuration missing.'),
+              backgroundColor: Colors.red,
+            ),
+          );
+          setState(() => _isSending = false);
+        }
+        return;
+      }
+
+      try {
+        final url = Uri.parse('https://api.emailjs.com/api/v1.0/email/send');
+        final response = await http.post(
+          url,
+          headers: {
+            'origin':
+                'http://localhost', // Required by some browser environments
+            'Content-Type': 'application/json',
+          },
+          body: json.encode({
+            'service_id': serviceId,
+            'template_id': templateId,
+            'user_id': publicKey,
+            'template_params': {
+              'from_name': _firstNameController.text,
+              'last_name':
+                  _lastNameController.text, // If your template supports it
+              'from_email': _emailController.text,
+              'subject': _subjectController.text,
+              'message': _messageController.text,
+            },
+          }),
+        );
+
+        if (response.body == 'OK') {
+          _lastSendTime = DateTime.now(); // Update last send time
+          if (mounted) {
+            ScaffoldMessenger.of(context).showSnackBar(
+              const SnackBar(
+                content: Text('Message sent successfully!'),
+                backgroundColor: Colors.green,
+              ),
+            );
+            // Clear form
+            _firstNameController.clear();
+            _lastNameController.clear();
+            _emailController.clear();
+            _subjectController.clear();
+            _messageController.clear();
+          }
+        } else {
+          debugPrint('EmailJS Error: ${response.body}');
+          if (mounted) {
+            ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(
+                content: Text('Failed to send message: ${response.body}'),
+                backgroundColor: Colors.red,
+              ),
+            );
+          }
+        }
+      } catch (e) {
+        debugPrint('Error sending email: $e');
+        if (mounted) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              content: Text('An error occurred: $e'),
+              backgroundColor: Colors.red,
+            ),
+          );
+        }
+      } finally {
+        if (mounted) {
+          setState(() {
+            _isSending = false;
+          });
+        }
+      }
     }
   }
 

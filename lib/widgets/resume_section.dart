@@ -41,27 +41,42 @@ class ResumeSection extends StatelessWidget {
                       title: l10n.job1Title,
                       subtitle: l10n.confidential,
                       description:
-                          "${l10n.job1Desc1}\n${l10n.job1Desc2}\n${l10n.job1Desc3}",
+                          "• ${l10n.job1Desc1}\n• ${l10n.job1Desc2}\n• ${l10n.job1Desc3}\n• ${l10n.job1Desc4}\n• ${l10n.job1Desc5}\n• ${l10n.job1Desc6}",
                     ),
                     _buildResumeItem(
                       period: l10n.job2Period,
                       title: l10n.job2Title,
                       subtitle: l10n.job2Company,
                       description:
-                          "${l10n.job2Desc1}\n${l10n.job2Desc2}\n${l10n.job2Desc3}",
+                          "• ${l10n.job2Desc1}\n• ${l10n.job2Desc2}\n• ${l10n.job2Desc3}\n• ${l10n.job2Desc4}\n• ${l10n.job2Desc5}\n• ${l10n.job2Desc6}",
                     ),
                     _buildResumeItem(
                       period: l10n.job3Period,
                       title: l10n.job3Title,
                       subtitle: l10n.job3Company,
-                      description: "${l10n.job3Desc1}\n${l10n.job3Desc2}",
+                      description:
+                          "• ${l10n.job3Desc1}\n• ${l10n.job3Desc2}\n• ${l10n.job3Desc3}\n• ${l10n.job3Desc4}\n• ${l10n.job3Desc5}\n• ${l10n.job3Desc6}\n• ${l10n.job3Desc7}",
                     ),
                     _buildResumeItem(
                       period: l10n.job4Period,
                       title: l10n.job4Title,
                       subtitle: l10n.job4Company,
                       description:
-                          "${l10n.job4Desc1}\n${l10n.job4Desc2}\n${l10n.job4Desc3}",
+                          "• ${l10n.job4Desc1}\n• ${l10n.job4Desc2}\n• ${l10n.job4Desc3}\n• ${l10n.job4Desc4}\n• ${l10n.job4Desc5}\n• ${l10n.job4Desc6}\n• ${l10n.job4Desc7}\n• ${l10n.job4Desc8}",
+                    ),
+                    _buildResumeItem(
+                      period: l10n.job5Period,
+                      title: l10n.job5Title,
+                      subtitle: l10n.job5Company,
+                      description:
+                          "• ${l10n.job5Desc1}\n• ${l10n.job5Desc2}\n• ${l10n.job5Desc3}\n• ${l10n.job5Desc4}",
+                    ),
+                    _buildResumeItem(
+                      period: l10n.job6Period,
+                      title: l10n.job6Title,
+                      subtitle: l10n.job6Company,
+                      description:
+                          "• ${l10n.job6Desc1}\n• ${l10n.job6Desc2}\n• ${l10n.job6Desc3}",
                     ),
                   ],
                 ),
@@ -78,19 +93,27 @@ class ResumeSection extends StatelessWidget {
                   children: [
                     _buildResumeItem(
                       period: "Languages",
-                      title: "Swift, Objective-C, Dart (Flutter), Python",
+                      title: "Swift, Objective-C, Dart (Flutter)",
                       subtitle: "",
                       description: "",
                     ),
                     _buildResumeItem(
-                      period: "Frameworks",
-                      title: "SwiftUI, UIKit, RxSwift, Combine",
+                      period: "Mobile Frameworks",
+                      title:
+                          "SwiftUI, UIKit, RxSwift, RxCocoa, Combine, GCD, Auto Layout, Swift Concurrency",
                       subtitle: "",
                       description: "",
                     ),
                     _buildResumeItem(
-                      period: "Tools",
-                      title: "Xcode, Git, Jenkins, Fastlane, JIRA",
+                      period: "Architecture",
+                      title: "MVVM, Clean Architecture",
+                      subtitle: "",
+                      description: "",
+                    ),
+                    _buildResumeItem(
+                      period: "Tools & CI/CD",
+                      title:
+                          "Xcode, Git, Jenkins, Fastlane, CocoaPods, SPM, Instruments",
                       subtitle: "",
                       description: "",
                     ),

@@ -233,20 +233,38 @@ abstract class AppLocalizations {
   /// No description provided for @job1Desc1.
   ///
   /// In en, this message translates to:
-  /// **'Maintained legacy Objective-C and Swift projects'**
+  /// **'Maintained and optimized legacy iOS projects written primarily in Objective-C (70%) and some Swift (30%).'**
   String get job1Desc1;
 
   /// No description provided for @job1Desc2.
   ///
   /// In en, this message translates to:
-  /// **'Developed new features using SwiftUI'**
+  /// **'Developed new features using SwiftUI, while maintaining and updating existing UIKit-based features.'**
   String get job1Desc2;
 
   /// No description provided for @job1Desc3.
   ///
   /// In en, this message translates to:
-  /// **'Maintained CI/CD pipelines'**
+  /// **'Implemented and maintained CI/CD pipelines to improve testing and deployment efficiency.'**
   String get job1Desc3;
+
+  /// No description provided for @job1Desc4.
+  ///
+  /// In en, this message translates to:
+  /// **'Collaborated closely with backend engineers and product managers to define requirements and deliver features on time.'**
+  String get job1Desc4;
+
+  /// No description provided for @job1Desc5.
+  ///
+  /// In en, this message translates to:
+  /// **'Participated in code reviews and technical discussions to ensure code quality and maintainability.'**
+  String get job1Desc5;
+
+  /// No description provided for @job1Desc6.
+  ///
+  /// In en, this message translates to:
+  /// **'Refactored legacy code and incrementally migrated core components to modern Swift practices.'**
+  String get job1Desc6;
 
   /// No description provided for @job2Company.
   ///
@@ -269,20 +287,38 @@ abstract class AppLocalizations {
   /// No description provided for @job2Desc1.
   ///
   /// In en, this message translates to:
-  /// **'Developed Lollipop Baby Camera (IoT product)'**
+  /// **'Developed the iOS application for Lollipop Baby Camera (IoT baby monitoring product).'**
   String get job2Desc1;
 
   /// No description provided for @job2Desc2.
   ///
   /// In en, this message translates to:
-  /// **'Introduced MVVM-C architecture with RxSwift'**
+  /// **'Collaborated with UI/UX designers and backend engineers to evaluate and implement new features.'**
   String get job2Desc2;
 
   /// No description provided for @job2Desc3.
   ///
   /// In en, this message translates to:
-  /// **'Established CI/CD pipelines'**
+  /// **'Responsible for feature development, testing, and App Store deployment.'**
   String get job2Desc3;
+
+  /// No description provided for @job2Desc4.
+  ///
+  /// In en, this message translates to:
+  /// **'Adopted RxSwift and introduced MVVM-C architecture to enhance code structure and scalability.'**
+  String get job2Desc4;
+
+  /// No description provided for @job2Desc5.
+  ///
+  /// In en, this message translates to:
+  /// **'Assisted the team in implementing unit tests, increasing test coverage and stability during development.'**
+  String get job2Desc5;
+
+  /// No description provided for @job2Desc6.
+  ///
+  /// In en, this message translates to:
+  /// **'Established a CI/CD pipeline based on GitLab and Xcode command-line tools, significantly accelerating app deployment and release.'**
+  String get job2Desc6;
 
   /// No description provided for @job3Company.
   ///
@@ -305,14 +341,44 @@ abstract class AppLocalizations {
   /// No description provided for @job3Desc1.
   ///
   /// In en, this message translates to:
-  /// **'Developed map-based social platform'**
+  /// **'Developed a map-based social platform iOS application.'**
   String get job3Desc1;
 
   /// No description provided for @job3Desc2.
   ///
   /// In en, this message translates to:
-  /// **'Integrated Applovin and AdMob for monetization'**
+  /// **'Coordinated with cross-functional teams to evaluate and assess feature requirements.'**
   String get job3Desc2;
+
+  /// No description provided for @job3Desc3.
+  ///
+  /// In en, this message translates to:
+  /// **'Introduced MVVM architecture and extensively utilized RxSwift & RxCocoa ecosystem to accelerate development efficiency.'**
+  String get job3Desc3;
+
+  /// No description provided for @job3Desc4.
+  ///
+  /// In en, this message translates to:
+  /// **'Established Jenkins CI/CD pipelines to achieve automated building and deployment.'**
+  String get job3Desc4;
+
+  /// No description provided for @job3Desc5.
+  ///
+  /// In en, this message translates to:
+  /// **'Developed and launched the entire App from scratch.'**
+  String get job3Desc5;
+
+  /// No description provided for @job3Desc6.
+  ///
+  /// In en, this message translates to:
+  /// **'Conducted Pair Programming and RxSwift source code walkthroughs to enhance team familiarity with tools.'**
+  String get job3Desc6;
+
+  /// No description provided for @job3Desc7.
+  ///
+  /// In en, this message translates to:
+  /// **'Integrated AppLovin and AdMob to build a robust ad mediation network.'**
+  String get job3Desc7;
 
   /// No description provided for @job4Company.
   ///
@@ -335,20 +401,50 @@ abstract class AppLocalizations {
   /// No description provided for @job4Desc1.
   ///
   /// In en, this message translates to:
-  /// **'Developed ETtoday News Cloud and ET Pet apps'**
+  /// **'Collaborated with a team of 4-5 to develop news-related products and internal enterprise applications.'**
   String get job4Desc1;
 
   /// No description provided for @job4Desc2.
   ///
   /// In en, this message translates to:
-  /// **'Served as RxSwift instructor for the team'**
+  /// **'Conducted code reviews and discussed implementation strategies.'**
   String get job4Desc2;
 
   /// No description provided for @job4Desc3.
   ///
   /// In en, this message translates to:
-  /// **'Optimized memory leak issues'**
+  /// **'Maintained and implemented new features for apps including ETtoday News, Starlight Cloud, ET Pet Store, and ET Pet.'**
   String get job4Desc3;
+
+  /// No description provided for @job4Desc4.
+  ///
+  /// In en, this message translates to:
+  /// **'Wrote unit tests to ensure the quality of product iterations.'**
+  String get job4Desc4;
+
+  /// No description provided for @job4Desc5.
+  ///
+  /// In en, this message translates to:
+  /// **'Optimized memory leak issues using Instruments, and utilized Memory Graph to track and resolve off-screen rendering issues.'**
+  String get job4Desc5;
+
+  /// No description provided for @job4Desc6.
+  ///
+  /// In en, this message translates to:
+  /// **'Regularly shared new knowledge, including WWDC insights, Swift Evolution proposals, and community event takeaways.'**
+  String get job4Desc6;
+
+  /// No description provided for @job4Desc7.
+  ///
+  /// In en, this message translates to:
+  /// **'Later served as the technical lead, mentoring two junior engineers in project development.'**
+  String get job4Desc7;
+
+  /// No description provided for @job4Desc8.
+  ///
+  /// In en, this message translates to:
+  /// **'Served as the team\'s RxSwift instructor, assisting members in mastering related tools.'**
+  String get job4Desc8;
 
   /// No description provided for @job5Company.
   ///
@@ -368,6 +464,30 @@ abstract class AppLocalizations {
   /// **'2019.02 - 2019.06'**
   String get job5Period;
 
+  /// No description provided for @job5Desc1.
+  ///
+  /// In en, this message translates to:
+  /// **'Adopted Agile methodologies and used JIRA to assist the PM in project management and progress tracking.'**
+  String get job5Desc1;
+
+  /// No description provided for @job5Desc2.
+  ///
+  /// In en, this message translates to:
+  /// **'Implemented payment gateway integration, QR Code scanning, push notifications, custom components, and product flow architecture design.'**
+  String get job5Desc2;
+
+  /// No description provided for @job5Desc3.
+  ///
+  /// In en, this message translates to:
+  /// **'Collaborated closely with other iOS developers, UI/UX designers, and backend engineers.'**
+  String get job5Desc3;
+
+  /// No description provided for @job5Desc4.
+  ///
+  /// In en, this message translates to:
+  /// **'Coordinated with QA to release beta versions via TestFlight and manage quality testing.'**
+  String get job5Desc4;
+
   /// No description provided for @job6Company.
   ///
   /// In en, this message translates to:
@@ -385,6 +505,24 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'2018.04 - 2018.10'**
   String get job6Period;
+
+  /// No description provided for @job6Desc1.
+  ///
+  /// In en, this message translates to:
+  /// **'Participated in project development, production line management, and quality control, covering project management (PM), database management, system setup, and maintenance services.'**
+  String get job6Desc1;
+
+  /// No description provided for @job6Desc2.
+  ///
+  /// In en, this message translates to:
+  /// **'Maintained PostgreSQL databases.'**
+  String get job6Desc2;
+
+  /// No description provided for @job6Desc3.
+  ///
+  /// In en, this message translates to:
+  /// **'Provided customer support and service.'**
+  String get job6Desc3;
 
   /// No description provided for @eduSchool.
   ///
