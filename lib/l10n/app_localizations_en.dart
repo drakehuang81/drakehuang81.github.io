@@ -40,11 +40,11 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get aboutMeIntro =>
-      'I\'m a passionate iOS developer with over 6 years of experience building high-quality mobile applications. I specialize in Swift, SwiftUI, and modern iOS architectures.';
+      'I am an iOS Developer with 6.5 years of experience. My expertise is deeply rooted in Swift, with a consistent focus on building high-performance and well-architected native applications. Throughout my career, I have also gained experience maintaining and iterating on Objective-C projects, allowing me to effectively navigate and solve complex problems within mixed-language environments.';
 
   @override
   String get aboutMeIntro2 =>
-      'I love creating elegant solutions to complex problems and am always eager to learn new technologies.';
+      'Recently, I have expanded my technical skillset to include Flutter, utilizing it to build this personal website and explore cross-platform solutions through various side projects. I am passionate about mastering new technologies while striving to deliver the best user experience by balancing stability with innovation.';
 
   @override
   String get viewResume => 'RESUME';

@@ -161,13 +161,13 @@ abstract class AppLocalizations {
   /// No description provided for @aboutMeIntro.
   ///
   /// In en, this message translates to:
-  /// **'I\'m a passionate iOS developer with over 6 years of experience building high-quality mobile applications. I specialize in Swift, SwiftUI, and modern iOS architectures.'**
+  /// **'I am an iOS Developer with 6.5 years of experience. My expertise is deeply rooted in Swift, with a consistent focus on building high-performance and well-architected native applications. Throughout my career, I have also gained experience maintaining and iterating on Objective-C projects, allowing me to effectively navigate and solve complex problems within mixed-language environments.'**
   String get aboutMeIntro;
 
   /// No description provided for @aboutMeIntro2.
   ///
   /// In en, this message translates to:
-  /// **'I love creating elegant solutions to complex problems and am always eager to learn new technologies.'**
+  /// **'Recently, I have expanded my technical skillset to include Flutter, utilizing it to build this personal website and explore cross-platform solutions through various side projects. I am passionate about mastering new technologies while striving to deliver the best user experience by balancing stability with innovation.'**
   String get aboutMeIntro2;
 
   /// No description provided for @viewResume.

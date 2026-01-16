@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+// ignore_for_file: deprecated_member_use
+
 import '../l10n/app_localizations.dart';
 import '../core/terminal_theme.dart';
 

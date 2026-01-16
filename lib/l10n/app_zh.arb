@@ -12,8 +12,8 @@
 
   "hello": "你好",
   "hereIsWhoIAm": "關於我是誰以及我做什麼",
-  "aboutMeIntro": "我是一位充滿熱情的 iOS 開發工程師，擁有超過 6 年的高品質行動應用程式開發經驗。我專精於 Swift、SwiftUI 及現代 iOS 架構。",
-  "aboutMeIntro2": "我熱愛為複雜問題創造優雅的解決方案，並且總是渴望學習新技術。",
+  "aboutMeIntro": "我是一名擁有 6 年半經驗的 iOS 開發者。我的技術核心建立在 Swift 之上，多年來專注於構建高效能且架構清晰的原生應用。隨著職涯發展，我也參與了 Objective-C 專案的維護與迭代，具備在混合語言環境中解決複雜問題的能力。",
+  "aboutMeIntro2": "近期，我將技術觸角延伸至 Flutter，並透過建置個人網站與 Side Projects 實踐跨平台開發。我不僅熱衷於鑽研新技術，更致力於在穩定性與創新之間，為使用者創造最佳的體驗。",
   "viewResume": "履歷",
 
   "resumeTitle": "履歷",

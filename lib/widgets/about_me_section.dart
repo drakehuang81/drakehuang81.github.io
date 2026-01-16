@@ -136,35 +136,36 @@ class _AboutMeSectionState extends State<AboutMeSection>
         ),
         const SizedBox(height: 12),
         // Blinking cursor at end of text
-        Row(
-          mainAxisAlignment: isDesktop
-              ? MainAxisAlignment.start
-              : MainAxisAlignment.center,
-          children: [
-            Flexible(
-              child: Text(
-                l10n.aboutMeIntro2,
+        // Description paragraph 2 with inline cursor
+        Text.rich(
+          TextSpan(
+            children: [
+              TextSpan(
+                text: l10n.aboutMeIntro2,
                 style: TerminalTheme.bodyLarge.copyWith(
                   color: const Color(0xFFCCCCCC),
                 ),
-                textAlign: isDesktop ? TextAlign.start : TextAlign.center,
               ),
-            ),
-            AnimatedBuilder(
-              animation: _cursorController,
-              builder: (context, child) {
-                return Opacity(
-                  opacity: _cursorController.value,
-                  child: Container(
-                    width: 10,
-                    height: 20,
-                    margin: const EdgeInsets.only(left: 4),
-                    color: TerminalTheme.cursorColor,
-                  ),
-                );
-              },
-            ),
-          ],
+              WidgetSpan(
+                alignment: PlaceholderAlignment.middle,
+                child: AnimatedBuilder(
+                  animation: _cursorController,
+                  builder: (context, child) {
+                    return Opacity(
+                      opacity: _cursorController.value,
+                      child: Container(
+                        width: 10,
+                        height: 20,
+                        margin: const EdgeInsets.only(left: 4),
+                        color: TerminalTheme.cursorColor,
+                      ),
+                    );
+                  },
+                ),
+              ),
+            ],
+          ),
+          textAlign: isDesktop ? TextAlign.start : TextAlign.center,
         ),
         const SizedBox(height: 48),
         // Terminal-style buttons

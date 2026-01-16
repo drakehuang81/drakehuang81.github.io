@@ -1,4 +1,6 @@
 import 'dart:async';
+// ignore_for_file: deprecated_member_use
+
 import 'package:flutter/material.dart';
 import '../l10n/app_localizations.dart';
 import '../core/locale_provider.dart';
@@ -112,29 +114,38 @@ class _NavBarState extends State<NavBar> with SingleTickerProviderStateMixin {
       child: Row(
         children: [
           // Terminal prompt with command
+          // Terminal prompt with command - Clickable to go Home
           Expanded(
-            child: Row(
-              children: [
-                Text('user@drakehuang:', style: TerminalTheme.commandPrompt),
-                Text('~', style: TerminalTheme.promptPath),
-                Text(' ➜ ', style: TerminalTheme.promptSymbol),
-                Text(_displayedCommand, style: TerminalTheme.bodyMedium),
-                // Blinking cursor
-                AnimatedBuilder(
-                  animation: _cursorController,
-                  builder: (context, child) {
-                    return Opacity(
-                      opacity: _cursorController.value,
-                      child: Container(
-                        width: 8,
-                        height: 16,
-                        margin: const EdgeInsets.only(left: 2),
-                        color: TerminalTheme.cursorColor,
-                      ),
-                    );
-                  },
-                ),
-              ],
+            child: InkWell(
+              onTap: () {
+                if (widget.selectedIndex != 0) {
+                  widget.onAboutMeTap();
+                }
+              },
+              overlayColor: MaterialStateProperty.all(Colors.transparent),
+              child: Row(
+                children: [
+                  Text('user@drakehuang:', style: TerminalTheme.commandPrompt),
+                  Text('~', style: TerminalTheme.promptPath),
+                  Text(' ➜ ', style: TerminalTheme.promptSymbol),
+                  Text(_displayedCommand, style: TerminalTheme.bodyMedium),
+                  // Blinking cursor
+                  AnimatedBuilder(
+                    animation: _cursorController,
+                    builder: (context, child) {
+                      return Opacity(
+                        opacity: _cursorController.value,
+                        child: Container(
+                          width: 8,
+                          height: 16,
+                          margin: const EdgeInsets.only(left: 2),
+                          color: TerminalTheme.cursorColor,
+                        ),
+                      );
+                    },
+                  ),
+                ],
+              ),
             ),
           ),
           // Navigation items
@@ -155,6 +166,10 @@ class _NavBarState extends State<NavBar> with SingleTickerProviderStateMixin {
             _buildSeparator(),
             _buildLanguageToggle(l10n),
           ] else ...[
+            if (widget.selectedIndex != 0) ...[
+              _buildNavItem('cd ~', 0, widget.onAboutMeTap),
+              _buildSeparator(),
+            ],
             _buildLanguageToggle(l10n),
           ],
         ],
