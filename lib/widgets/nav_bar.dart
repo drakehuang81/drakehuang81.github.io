@@ -2,12 +2,12 @@ import 'dart:async';
 // ignore_for_file: deprecated_member_use
 
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../l10n/app_localizations.dart';
-import '../core/locale_provider.dart';
+import '../providers/locale_provider.dart';
 import '../core/terminal_theme.dart';
 
-class NavBar extends StatefulWidget {
-  final LocaleProvider localeProvider;
+class NavBar extends ConsumerStatefulWidget {
   final VoidCallback onAboutMeTap;
   final VoidCallback onResumeTap;
   final VoidCallback onContactTap;
@@ -15,7 +15,6 @@ class NavBar extends StatefulWidget {
 
   const NavBar({
     super.key,
-    required this.localeProvider,
     required this.onAboutMeTap,
     required this.onResumeTap,
     required this.onContactTap,
@@ -23,10 +22,11 @@ class NavBar extends StatefulWidget {
   });
 
   @override
-  State<NavBar> createState() => _NavBarState();
+  ConsumerState<NavBar> createState() => _NavBarState();
 }
 
-class _NavBarState extends State<NavBar> with SingleTickerProviderStateMixin {
+class _NavBarState extends ConsumerState<NavBar>
+    with SingleTickerProviderStateMixin {
   late AnimationController _cursorController;
   String _displayedCommand = '';
   bool _isTyping = false;
@@ -210,7 +210,7 @@ class _NavBarState extends State<NavBar> with SingleTickerProviderStateMixin {
 
   Widget _buildLanguageToggle(AppLocalizations l10n) {
     return InkWell(
-      onTap: () => widget.localeProvider.toggleLocale(),
+      onTap: () => ref.read(localeProvider.notifier).toggleLocale(),
       borderRadius: BorderRadius.circular(4),
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
@@ -255,7 +255,7 @@ class _NavBarState extends State<NavBar> with SingleTickerProviderStateMixin {
               _handleNavTap(widget.onContactTap);
               break;
             case 3:
-              widget.localeProvider.toggleLocale();
+              ref.read(localeProvider.notifier).toggleLocale();
               break;
           }
         },

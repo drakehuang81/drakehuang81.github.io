@@ -1,26 +1,20 @@
 import 'package:flutter/material.dart';
-import '../core/locale_provider.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../core/terminal_theme.dart';
+import '../providers/navigation_provider.dart';
 import '../widgets/nav_bar.dart';
 import '../widgets/about_me_section.dart';
 import '../widgets/resume_section.dart';
 import '../widgets/contact_section.dart';
 import '../widgets/matrix_rain_background.dart';
 
-class MainPage extends StatefulWidget {
-  final LocaleProvider localeProvider;
-
-  const MainPage({super.key, required this.localeProvider});
+class MainPage extends ConsumerWidget {
+  const MainPage({super.key});
 
   @override
-  State<MainPage> createState() => _MainPageState();
-}
+  Widget build(BuildContext context, WidgetRef ref) {
+    final selectedIndex = ref.watch(navigationProvider);
 
-class _MainPageState extends State<MainPage> {
-  int _selectedIndex = 0;
-
-  @override
-  Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: TerminalTheme.background,
       body: MatrixRainBackground(
@@ -28,11 +22,13 @@ class _MainPageState extends State<MainPage> {
         child: Column(
           children: [
             NavBar(
-              localeProvider: widget.localeProvider,
-              selectedIndex: _selectedIndex,
-              onAboutMeTap: () => setState(() => _selectedIndex = 0),
-              onResumeTap: () => setState(() => _selectedIndex = 1),
-              onContactTap: () => setState(() => _selectedIndex = 2),
+              selectedIndex: selectedIndex,
+              onAboutMeTap: () =>
+                  ref.read(navigationProvider.notifier).state = 0,
+              onResumeTap: () =>
+                  ref.read(navigationProvider.notifier).state = 1,
+              onContactTap: () =>
+                  ref.read(navigationProvider.notifier).state = 2,
             ),
             Expanded(
               child: AnimatedSwitcher(
@@ -40,7 +36,7 @@ class _MainPageState extends State<MainPage> {
                 transitionBuilder: (Widget child, Animation<double> animation) {
                   return FadeTransition(opacity: animation, child: child);
                 },
-                child: _buildCurrentTab(),
+                child: _buildCurrentTab(ref, selectedIndex),
               ),
             ),
           ],
@@ -49,10 +45,13 @@ class _MainPageState extends State<MainPage> {
     );
   }
 
-  Widget _buildCurrentTab() {
-    switch (_selectedIndex) {
+  Widget _buildCurrentTab(WidgetRef ref, int selectedIndex) {
+    switch (selectedIndex) {
       case 0:
-        return KeyedSubtree(key: const ValueKey(0), child: _buildAboutMeTab());
+        return KeyedSubtree(
+          key: const ValueKey(0),
+          child: _buildAboutMeTab(ref),
+        );
       case 1:
         return KeyedSubtree(key: const ValueKey(1), child: _buildResumeTab());
       case 2:
@@ -62,11 +61,11 @@ class _MainPageState extends State<MainPage> {
     }
   }
 
-  Widget _buildAboutMeTab() {
+  Widget _buildAboutMeTab(WidgetRef ref) {
     return _buildCenteredScrollable(
       AboutMeSection(
-        onViewResume: () => setState(() => _selectedIndex = 1),
-        onViewContact: () => setState(() => _selectedIndex = 2),
+        onViewResume: () => ref.read(navigationProvider.notifier).state = 1,
+        onViewContact: () => ref.read(navigationProvider.notifier).state = 2,
       ),
     );
   }
