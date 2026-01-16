@@ -110,7 +110,7 @@ class _NavBarState extends ConsumerState<NavBar>
         horizontal: isDesktop ? 64 : 24,
         vertical: 16,
       ),
-      color: TerminalTheme.background,
+      color: Colors.transparent,
       child: Row(
         children: [
           // Terminal prompt with command - Clickable to go Home
