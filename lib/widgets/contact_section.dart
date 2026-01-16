@@ -237,7 +237,7 @@ class _ConnectionData {
   final String url;
   final Color color;
 
-  _ConnectionData({
+  const _ConnectionData({
     required this.index,
     required this.icon,
     required this.label,
