@@ -113,7 +113,6 @@ class _NavBarState extends State<NavBar> with SingleTickerProviderStateMixin {
       color: TerminalTheme.background,
       child: Row(
         children: [
-          // Terminal prompt with command
           // Terminal prompt with command - Clickable to go Home
           Expanded(
             child: InkWell(
@@ -128,21 +127,36 @@ class _NavBarState extends State<NavBar> with SingleTickerProviderStateMixin {
                   Text('user@drakehuang:', style: TerminalTheme.commandPrompt),
                   Text('~', style: TerminalTheme.promptPath),
                   Text(' ➜ ', style: TerminalTheme.promptSymbol),
-                  Text(_displayedCommand, style: TerminalTheme.bodyMedium),
-                  // Blinking cursor
-                  AnimatedBuilder(
-                    animation: _cursorController,
-                    builder: (context, child) {
-                      return Opacity(
-                        opacity: _cursorController.value,
-                        child: Container(
-                          width: 8,
-                          height: 16,
-                          margin: const EdgeInsets.only(left: 2),
-                          color: TerminalTheme.cursorColor,
+
+                  // Command text with truncation
+                  Expanded(
+                    child: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Flexible(
+                          child: Text(
+                            _displayedCommand,
+                            style: TerminalTheme.bodyMedium,
+                            overflow: TextOverflow.ellipsis,
+                          ),
                         ),
-                      );
-                    },
+                        // Blinking cursor
+                        AnimatedBuilder(
+                          animation: _cursorController,
+                          builder: (context, child) {
+                            return Opacity(
+                              opacity: _cursorController.value,
+                              child: Container(
+                                width: 8,
+                                height: 16,
+                                margin: const EdgeInsets.only(left: 2),
+                                color: TerminalTheme.cursorColor,
+                              ),
+                            );
+                          },
+                        ),
+                      ],
+                    ),
                   ),
                 ],
               ),
@@ -166,11 +180,8 @@ class _NavBarState extends State<NavBar> with SingleTickerProviderStateMixin {
             _buildSeparator(),
             _buildLanguageToggle(l10n),
           ] else ...[
-            if (widget.selectedIndex != 0) ...[
-              _buildNavItem('cd ~', 0, widget.onAboutMeTap),
-              _buildSeparator(),
-            ],
-            _buildLanguageToggle(l10n),
+            // Mobile: Hamburger Menu
+            _buildMobileMenu(context, l10n),
           ],
         ],
       ),
@@ -208,6 +219,87 @@ class _NavBarState extends State<NavBar> with SingleTickerProviderStateMixin {
           style: TerminalTheme.navItem,
         ),
       ),
+    );
+  }
+
+  Widget _buildMobileMenu(BuildContext context, AppLocalizations l10n) {
+    return Theme(
+      data: Theme.of(context).copyWith(
+        popupMenuTheme: PopupMenuThemeData(
+          color: TerminalTheme.backgroundDark,
+          textStyle: TerminalTheme.bodyMedium,
+          shape: RoundedRectangleBorder(
+            side: BorderSide(color: TerminalTheme.borderColor),
+            borderRadius: BorderRadius.circular(8),
+          ),
+        ),
+        dividerTheme: const DividerThemeData(
+          color: TerminalTheme.borderColor,
+          thickness: 1,
+        ),
+      ),
+      child: PopupMenuButton<int>(
+        icon: const Icon(Icons.menu, color: TerminalTheme.gitHubText),
+        tooltip: 'Menu',
+        padding: EdgeInsets.zero,
+        offset: const Offset(0, 40),
+        onSelected: (index) {
+          switch (index) {
+            case 0:
+              _handleNavTap(widget.onAboutMeTap);
+              break;
+            case 1:
+              _handleNavTap(widget.onResumeTap);
+              break;
+            case 2:
+              _handleNavTap(widget.onContactTap);
+              break;
+            case 3:
+              widget.localeProvider.toggleLocale();
+              break;
+          }
+        },
+        itemBuilder: (context) => [
+          PopupMenuItem(
+            value: 0,
+            child: _buildMobileMenuItem(
+              l10n.navAboutMe.toLowerCase(),
+              widget.selectedIndex == 0,
+            ),
+          ),
+          PopupMenuItem(
+            value: 1,
+            child: _buildMobileMenuItem(
+              l10n.navResume.toLowerCase(),
+              widget.selectedIndex == 1,
+            ),
+          ),
+          PopupMenuItem(
+            value: 2,
+            child: _buildMobileMenuItem(
+              l10n.navContact.toLowerCase(),
+              widget.selectedIndex == 2,
+            ),
+          ),
+          const PopupMenuDivider(),
+          PopupMenuItem(
+            value: 3,
+            child: Text(
+              l10n.switchLanguage.toLowerCase(),
+              style: TerminalTheme.navItem.copyWith(
+                color: TerminalTheme.gitHubBlue,
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildMobileMenuItem(String label, bool isSelected) {
+    return Text(
+      '> $label',
+      style: isSelected ? TerminalTheme.navItemSelected : TerminalTheme.navItem,
     );
   }
 }
