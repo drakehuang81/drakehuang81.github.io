@@ -5,17 +5,14 @@
   "jobTitle": "資深 iOS 開發工程師",
   "summary": "擁有 6 年以上 iOS 開發經驗",
   "switchLanguage": "EN",
-
   "navAboutMe": "關於我",
   "navResume": "履歷",
   "navContact": "聯絡",
-
   "hello": "你好",
   "hereIsWhoIAm": "關於我是誰以及我做什麼",
   "aboutMeIntro": "我是一名擁有 6 年半經驗的 iOS 開發者。我的技術核心建立在 Swift 之上，多年來專注於構建高效能且架構清晰的原生應用。隨著職涯發展，我也參與了 Objective-C 專案的維護與迭代，具備在混合語言環境中解決複雜問題的能力。",
   "aboutMeIntro2": "近期，我將技術觸角延伸至 Flutter，並透過建置個人網站與 Side Projects 實踐跨平台開發。我不僅熱衷於鑽研新技術，更致力於在穩定性與創新之間，為使用者創造最佳的體驗。",
   "viewResume": "履歷",
-
   "resumeTitle": "履歷",
   "workExperience": "工作經歷",
   "experienceSection": "工作經歷",
@@ -23,7 +20,12 @@
   "educationSection": "教育背景",
   "downloadCV": "下載履歷",
   "confidential": "保密",
-
+  "job0Title": "獨立開發者",
+  "job0Company": "自雇",
+  "job0Period": "2025.11 - 現在",
+  "job0Desc1": "建構 AI 驅動開發工作流 (AI-Driven Workflow)： 先行導入並整合 Claude Code、Gemini CLI、OpenCode 與 Antigravity 等次世代 AI 終端工具，建立高自動化的程式碼生成與除錯流程，顯著提升開發迭代速度。",
+  "job0Desc2": "Flutter 跨平台應用程式開發： 獨立架構並開發 Mobile App (Side Project)，運用 Flutter 實現單一程式碼庫跨平台部署，負責從 UI/UX 設計、狀態管理到功能實作的完整生命週期。",
+  "job0Desc3": "Web 應用程式實作： 使用 Flutter Web 技術開發並部署響應式（Responsive）個人履歷網站，解決 Web 端渲染效能優化問題，展現全端工程與跨裝置適配能力。",
   "job1Title": "資深 iOS 開發工程師",
   "job1Period": "2024.12 - 2025.10",
   "job1Desc1": "維護與優化主要以 Objective-C (70%) 及部分 Swift (30%) 撰寫的舊有 iOS 專案。",
@@ -32,7 +34,6 @@
   "job1Desc4": "與後端工程師及產品經理緊密合作，定義需求並按時交付功能。",
   "job1Desc5": "參與程式碼審查及技術討論，確保程式碼品質與可維護性。",
   "job1Desc6": "重構舊有程式碼，並逐步將核心元件移轉至現代 Swift 實踐。",
-
   "job2Company": "Masterwork Aoitek Tech Corp Ltd",
   "job2Title": "資深 iOS 開發工程師",
   "job2Period": "2023.03 - 2024.10",
@@ -42,7 +43,6 @@
   "job2Desc4": "採用 RxSwift 並引入 MVVM-C 架構，強化程式碼結構與擴充性。",
   "job2Desc5": "協助團隊實作單元測試，提高開發階段的測試覆蓋率與穩定性。",
   "job2Desc6": "建立基於 GitLab 與 Xcode 命令列工具的 CI/CD 流程，大幅加速 App 部署與發佈。",
-
   "job3Company": "Connect Mobile LTD",
   "job3Title": "資深 iOS 開發工程師",
   "job3Period": "2022.07 - 2022.12",
@@ -53,7 +53,6 @@
   "job3Desc5": "從零到有完成上線整個 App。",
   "job3Desc6": "進行 Pair Programming 及 RxSwift 原始碼導讀，提升團隊工具熟悉度。",
   "job3Desc7": "整合 AppLovin 與 AdMob，打造穩健的廣告調停網路。",
-
   "job4Company": "ET New Media Holding Co., Ltd",
   "job4Title": "iOS 開發工程師",
   "job4Period": "2019.09 - 2022.07",
@@ -65,7 +64,6 @@
   "job4Desc6": "定期分享新知，包括 WWDC、Swift Evolution 提案及社群活動心得。",
   "job4Desc7": "後期擔任團隊技術領導，指導兩位初級工程師參與專案開發。",
   "job4Desc8": "擔任團隊 RxSwift 講師，協助成員掌握相關工具。",
-
   "job5Company": "ZIMI TECHNOLOGY CO., LTD",
   "job5Title": "iOS 開發工程師",
   "job5Period": "2019.02 - 2019.06",
@@ -73,18 +71,15 @@
   "job5Desc2": "實作支付閘道整合、QR Code 掃描、推播通知、自訂元件與產品流程架構設計。",
   "job5Desc3": "與其他 iOS 開發、UI/UX 設計師及後端工程師密切合作。",
   "job5Desc4": "與 QA 協同透過 TestFlight 發佈測試版並管理品質測試。",
-
   "job6Company": "JU YAO INFORMATION CONSULTANT LTD.",
   "job6Title": "IT 工程師",
   "job6Period": "2018.04 - 2018.10",
   "job6Desc1": "參與專案開發、產線管理與品質管理，涵蓋專案管理 (PM)、資料庫管理、系統架設及維護服務。",
   "job6Desc2": "維護 PostgreSQL 資料庫。",
   "job6Desc3": "提供客戶支援與服務。",
-
   "eduSchool": "淡江大學",
   "eduDegree": "學士",
   "eduMajor": "資訊與圖書館學系",
-
   "contactTitle": "聯絡",
   "contactSubtitle": "期待收到您的來信",
   "phone": "電話",

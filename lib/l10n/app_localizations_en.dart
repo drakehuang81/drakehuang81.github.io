@@ -71,6 +71,27 @@ class AppLocalizationsEn extends AppLocalizations {
   String get confidential => 'Confidential';
 
   @override
+  String get job0Title => 'Independent Developer';
+
+  @override
+  String get job0Company => 'Self-Employed';
+
+  @override
+  String get job0Period => '2025.11 - Present';
+
+  @override
+  String get job0Desc1 =>
+      'Pioneered AI-Augmented Development: Leveraged cutting-edge AI CLI agents (including Claude Code, Gemini CLI, OpenCode, and Antigravity) to orchestrate complex coding tasks. Established a high-velocity workflow focused on automated refactoring and intelligent debugging.';
+
+  @override
+  String get job0Desc2 =>
+      'End-to-End Flutter Development: Architected and engineered a cross-platform mobile application from scratch using Flutter. Managed the full product lifecycle, translating conceptual requirements into a functional MVP with clean architecture.';
+
+  @override
+  String get job0Desc3 =>
+      'Flutter Web Implementation: Designed and deployed a responsive personal portfolio website using Flutter Web. Demonstrated proficiency in single-codebase multi-platform development and optimized web performance.';
+
+  @override
   String get job1Title => 'Senior iOS Developer';
 
   @override

@@ -71,6 +71,27 @@ class AppLocalizationsZh extends AppLocalizations {
   String get confidential => '保密';
 
   @override
+  String get job0Title => '獨立開發者';
+
+  @override
+  String get job0Company => '自雇';
+
+  @override
+  String get job0Period => '2025.11 - 現在';
+
+  @override
+  String get job0Desc1 =>
+      '建構 AI 驅動開發工作流 (AI-Driven Workflow)： 先行導入並整合 Claude Code、Gemini CLI、OpenCode 與 Antigravity 等次世代 AI 終端工具，建立高自動化的程式碼生成與除錯流程，顯著提升開發迭代速度。';
+
+  @override
+  String get job0Desc2 =>
+      'Flutter 跨平台應用程式開發： 獨立架構並開發 Mobile App (Side Project)，運用 Flutter 實現單一程式碼庫跨平台部署，負責從 UI/UX 設計、狀態管理到功能實作的完整生命週期。';
+
+  @override
+  String get job0Desc3 =>
+      'Web 應用程式實作： 使用 Flutter Web 技術開發並部署響應式（Responsive）個人履歷網站，解決 Web 端渲染效能優化問題，展現全端工程與跨裝置適配能力。';
+
+  @override
   String get job1Title => '資深 iOS 開發工程師';
 
   @override

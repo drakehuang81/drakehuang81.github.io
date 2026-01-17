@@ -20,7 +20,9 @@ class MacOSWindow extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        color: const Color(0xFF1E1E1E).withValues(alpha: 0.95), // Dark window bg
+        color: const Color(
+          0xFF1E1E1E,
+        ).withValues(alpha: 0.95), // Dark window bg
         borderRadius: BorderRadius.circular(10),
         boxShadow: [
           BoxShadow(
@@ -30,7 +32,10 @@ class MacOSWindow extends StatelessWidget {
             spreadRadius: 5,
           ),
         ],
-        border: Border.all(color: Colors.white.withValues(alpha: 0.1), width: 0.5),
+        border: Border.all(
+          color: Colors.white.withValues(alpha: 0.1),
+          width: 0.5,
+        ),
       ),
       child: Column(
         children: [
@@ -45,43 +50,47 @@ class MacOSWindow extends StatelessWidget {
               ),
             ),
             padding: const EdgeInsets.symmetric(horizontal: 10),
-            child: Stack(
-              children: [
-                // Window Controls
-                Align(
-                  alignment: Alignment.centerLeft,
-                  child: Row(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      // Close button (red)
-                      GestureDetector(
-                        onTap: onClose,
-                        behavior: HitTestBehavior.opaque,
-                        child: _buildWindowControl(const Color(0xFFFF5F57)),
-                      ),
-                      const SizedBox(width: 8),
-                      // maximize button (green)
-                      GestureDetector(
-                        onTap: onMaximize,
-                        behavior: HitTestBehavior.opaque,
-                        child: _buildWindowControl(const Color(0xFF28C940)),
-                      ), // Green
-                    ],
-                  ),
-                ),
-                // Title
-                Align(
-                  alignment: Alignment.center,
-                  child: Text(
-                    title,
-                    style: TerminalTheme.bodyMedium.copyWith(
-                      color: Colors.white.withValues(alpha: 0.8),
-                      fontSize: 13,
-                      fontWeight: FontWeight.w500,
+            child: GestureDetector(
+              onDoubleTap: onMaximize,
+              behavior: HitTestBehavior.translucent,
+              child: Stack(
+                children: [
+                  // Window Controls
+                  Align(
+                    alignment: Alignment.centerLeft,
+                    child: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        // Close button (red)
+                        GestureDetector(
+                          onTap: onClose,
+                          behavior: HitTestBehavior.opaque,
+                          child: _buildWindowControl(const Color(0xFFFF5F57)),
+                        ),
+                        const SizedBox(width: 8),
+                        // maximize button (green)
+                        GestureDetector(
+                          onTap: onMaximize,
+                          behavior: HitTestBehavior.opaque,
+                          child: _buildWindowControl(const Color(0xFF28C940)),
+                        ), // Green
+                      ],
                     ),
                   ),
-                ),
-              ],
+                  // Title
+                  Align(
+                    alignment: Alignment.center,
+                    child: Text(
+                      title,
+                      style: TerminalTheme.bodyMedium.copyWith(
+                        color: Colors.white.withValues(alpha: 0.8),
+                        fontSize: 13,
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
             ),
           ),
           // Content Area

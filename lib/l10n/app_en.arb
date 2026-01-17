@@ -5,17 +5,14 @@
   "jobTitle": "Senior iOS Developer",
   "summary": "6+ years of experience in iOS development",
   "switchLanguage": "中文",
-
   "navAboutMe": "ABOUT ME",
   "navResume": "RESUME",
   "navContact": "CONTACT",
-
   "hello": "Hello",
   "hereIsWhoIAm": "Here's who I am & what I do",
   "aboutMeIntro": "I am an iOS Developer with 6.5 years of experience. My expertise is deeply rooted in Swift, with a consistent focus on building high-performance and well-architected native applications. Throughout my career, I have also gained experience maintaining and iterating on Objective-C projects, allowing me to effectively navigate and solve complex problems within mixed-language environments.",
   "aboutMeIntro2": "Recently, I have expanded my technical skillset to include Flutter, utilizing it to build this personal website and explore cross-platform solutions through various side projects. I am passionate about mastering new technologies while striving to deliver the best user experience by balancing stability with innovation.",
   "viewResume": "RESUME",
-
   "resumeTitle": "Resume",
   "workExperience": "Work Experience",
   "experienceSection": "Experience",
@@ -23,7 +20,12 @@
   "educationSection": "Education",
   "downloadCV": "DOWNLOAD CV",
   "confidential": "Confidential",
-
+  "job0Title": "Independent Developer",
+  "job0Company": "Self-Employed",
+  "job0Period": "2025.11 - Present",
+  "job0Desc1": "Pioneered AI-Augmented Development: Leveraged cutting-edge AI CLI agents (including Claude Code, Gemini CLI, OpenCode, and Antigravity) to orchestrate complex coding tasks. Established a high-velocity workflow focused on automated refactoring and intelligent debugging.",
+  "job0Desc2": "End-to-End Flutter Development: Architected and engineered a cross-platform mobile application from scratch using Flutter. Managed the full product lifecycle, translating conceptual requirements into a functional MVP with clean architecture.",
+  "job0Desc3": "Flutter Web Implementation: Designed and deployed a responsive personal portfolio website using Flutter Web. Demonstrated proficiency in single-codebase multi-platform development and optimized web performance.",
   "job1Title": "Senior iOS Developer",
   "job1Period": "2024.12 - 2025.10",
   "job1Desc1": "Maintained and optimized legacy iOS projects written primarily in Objective-C (70%) and some Swift (30%).",
@@ -32,7 +34,6 @@
   "job1Desc4": "Collaborated closely with backend engineers and product managers to define requirements and deliver features on time.",
   "job1Desc5": "Participated in code reviews and technical discussions to ensure code quality and maintainability.",
   "job1Desc6": "Refactored legacy code and incrementally migrated core components to modern Swift practices.",
-
   "job2Company": "Masterwork Aoitek Tech Corp Ltd",
   "job2Title": "Sr. iOS Developer",
   "job2Period": "2023.03 - 2024.10",
@@ -42,7 +43,6 @@
   "job2Desc4": "Adopted RxSwift and introduced MVVM-C architecture to enhance code structure and scalability.",
   "job2Desc5": "Assisted the team in implementing unit tests, increasing test coverage and stability during development.",
   "job2Desc6": "Established a CI/CD pipeline based on GitLab and Xcode command-line tools, significantly accelerating app deployment and release.",
-
   "job3Company": "Connect Mobile LTD",
   "job3Title": "Sr. iOS Developer",
   "job3Period": "2022.07 - 2022.12",
@@ -53,7 +53,6 @@
   "job3Desc5": "Developed and launched the entire App from scratch.",
   "job3Desc6": "Conducted Pair Programming and RxSwift source code walkthroughs to enhance team familiarity with tools.",
   "job3Desc7": "Integrated AppLovin and AdMob to build a robust ad mediation network.",
-
   "job4Company": "ET New Media Holding Co., Ltd",
   "job4Title": "iOS Developer",
   "job4Period": "2019.09 - 2022.07",
@@ -65,7 +64,6 @@
   "job4Desc6": "Regularly shared new knowledge, including WWDC insights, Swift Evolution proposals, and community event takeaways.",
   "job4Desc7": "Later served as the technical lead, mentoring two junior engineers in project development.",
   "job4Desc8": "Served as the team's RxSwift instructor, assisting members in mastering related tools.",
-
   "job5Company": "ZIMI TECHNOLOGY CO., LTD",
   "job5Title": "iOS Developer",
   "job5Period": "2019.02 - 2019.06",
@@ -73,18 +71,15 @@
   "job5Desc2": "Implemented payment gateway integration, QR Code scanning, push notifications, custom components, and product flow architecture design.",
   "job5Desc3": "Collaborated closely with other iOS developers, UI/UX designers, and backend engineers.",
   "job5Desc4": "Coordinated with QA to release beta versions via TestFlight and manage quality testing.",
-
   "job6Company": "JU YAO INFORMATION CONSULTANT LTD.",
   "job6Title": "IT Engineer",
   "job6Period": "2018.04 - 2018.10",
   "job6Desc1": "Participated in project development, production line management, and quality control, covering project management (PM), database management, system setup, and maintenance services.",
   "job6Desc2": "Maintained PostgreSQL databases.",
   "job6Desc3": "Provided customer support and service.",
-
   "eduSchool": "Tamkang University",
   "eduDegree": "Bachelor's Degree",
   "eduMajor": "Department of Information and Library Science",
-
   "contactTitle": "Contact",
   "contactSubtitle": "Looking forward to hearing from you",
   "phone": "Phone",

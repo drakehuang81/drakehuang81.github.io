@@ -218,6 +218,42 @@ abstract class AppLocalizations {
   /// **'Confidential'**
   String get confidential;
 
+  /// No description provided for @job0Title.
+  ///
+  /// In en, this message translates to:
+  /// **'Independent Developer'**
+  String get job0Title;
+
+  /// No description provided for @job0Company.
+  ///
+  /// In en, this message translates to:
+  /// **'Self-Employed'**
+  String get job0Company;
+
+  /// No description provided for @job0Period.
+  ///
+  /// In en, this message translates to:
+  /// **'2025.11 - Present'**
+  String get job0Period;
+
+  /// No description provided for @job0Desc1.
+  ///
+  /// In en, this message translates to:
+  /// **'Pioneered AI-Augmented Development: Leveraged cutting-edge AI CLI agents (including Claude Code, Gemini CLI, OpenCode, and Antigravity) to orchestrate complex coding tasks. Established a high-velocity workflow focused on automated refactoring and intelligent debugging.'**
+  String get job0Desc1;
+
+  /// No description provided for @job0Desc2.
+  ///
+  /// In en, this message translates to:
+  /// **'End-to-End Flutter Development: Architected and engineered a cross-platform mobile application from scratch using Flutter. Managed the full product lifecycle, translating conceptual requirements into a functional MVP with clean architecture.'**
+  String get job0Desc2;
+
+  /// No description provided for @job0Desc3.
+  ///
+  /// In en, this message translates to:
+  /// **'Flutter Web Implementation: Designed and deployed a responsive personal portfolio website using Flutter Web. Demonstrated proficiency in single-codebase multi-platform development and optimized web performance.'**
+  String get job0Desc3;
+
   /// No description provided for @job1Title.
   ///
   /// In en, this message translates to:

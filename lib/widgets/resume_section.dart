@@ -33,6 +33,13 @@ class ResumeSection extends StatelessWidget {
                 content: Column(
                   children: [
                     _buildResumeItem(
+                      period: l10n.job0Period,
+                      title: l10n.job0Title,
+                      subtitle: l10n.job0Company,
+                      description:
+                          "• ${l10n.job0Desc1}\n• ${l10n.job0Desc2}\n• ${l10n.job0Desc3}",
+                    ),
+                    _buildResumeItem(
                       period: l10n.job1Period,
                       title: l10n.job1Title,
                       subtitle: l10n.confidential,
