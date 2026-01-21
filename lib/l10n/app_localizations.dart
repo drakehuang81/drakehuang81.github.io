@@ -239,19 +239,19 @@ abstract class AppLocalizations {
   /// No description provided for @job0Desc1.
   ///
   /// In en, this message translates to:
-  /// **'Pioneered AI-Augmented Development: Leveraged cutting-edge AI CLI agents (including Claude Code, Gemini CLI, OpenCode, and Antigravity) to orchestrate complex coding tasks. Established a high-velocity workflow focused on automated refactoring and intelligent debugging.'**
+  /// **'Cross-Platform Product Launch: Designed and engineered a scalable mobile application from scratch using Flutter, handling the full lifecycle from requirements to MVP deployment.'**
   String get job0Desc1;
 
   /// No description provided for @job0Desc2.
   ///
   /// In en, this message translates to:
-  /// **'End-to-End Flutter Development: Architected and engineered a cross-platform mobile application from scratch using Flutter. Managed the full product lifecycle, translating conceptual requirements into a functional MVP with clean architecture.'**
+  /// **'Technology Integration: Implemented clean architecture and utilized AI-driven workflows to accelerate feature delivery and code refactoring.'**
   String get job0Desc2;
 
   /// No description provided for @job0Desc3.
   ///
   /// In en, this message translates to:
-  /// **'Flutter Web Implementation: Designed and deployed a responsive personal portfolio website using Flutter Web. Demonstrated proficiency in single-codebase multi-platform development and optimized web performance.'**
+  /// **'High-Velocity Product Delivery: Architected and launched a full-stack cross-platform application using Flutter and Clean Architecture, reducing development cycle by 40% through AI-assisted workflows.'**
   String get job0Desc3;
 
   /// No description provided for @job1Title.
@@ -259,6 +259,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Senior iOS Developer'**
   String get job1Title;
+
+  /// No description provided for @job1Company.
+  ///
+  /// In en, this message translates to:
+  /// **'Cle (Business Closure)'**
+  String get job1Company;
 
   /// No description provided for @job1Period.
   ///
@@ -269,38 +275,20 @@ abstract class AppLocalizations {
   /// No description provided for @job1Desc1.
   ///
   /// In en, this message translates to:
-  /// **'Maintained and optimized legacy iOS projects written primarily in Objective-C (70%) and some Swift (30%).'**
+  /// **'Legacy Code Modernization: Maintained a mixed codebase (70% Objective-C / 30% Swift), successfully refactoring core modules to Swift without disrupting live operations.'**
   String get job1Desc1;
 
   /// No description provided for @job1Desc2.
   ///
   /// In en, this message translates to:
-  /// **'Developed new features using SwiftUI, while maintaining and updating existing UIKit-based features.'**
+  /// **'Feature Expansion: Delivered new features using SwiftUI, bridging the gap between modern UI frameworks and existing UIKit infrastructure.'**
   String get job1Desc2;
 
   /// No description provided for @job1Desc3.
   ///
   /// In en, this message translates to:
-  /// **'Implemented and maintained CI/CD pipelines to improve testing and deployment efficiency.'**
+  /// **'DevOps Efficiency: Optimized CI/CD pipelines, reducing build times and streamlining the release process to the App Store.'**
   String get job1Desc3;
-
-  /// No description provided for @job1Desc4.
-  ///
-  /// In en, this message translates to:
-  /// **'Collaborated closely with backend engineers and product managers to define requirements and deliver features on time.'**
-  String get job1Desc4;
-
-  /// No description provided for @job1Desc5.
-  ///
-  /// In en, this message translates to:
-  /// **'Participated in code reviews and technical discussions to ensure code quality and maintainability.'**
-  String get job1Desc5;
-
-  /// No description provided for @job1Desc6.
-  ///
-  /// In en, this message translates to:
-  /// **'Refactored legacy code and incrementally migrated core components to modern Swift practices.'**
-  String get job1Desc6;
 
   /// No description provided for @job2Company.
   ///
@@ -311,7 +299,7 @@ abstract class AppLocalizations {
   /// No description provided for @job2Title.
   ///
   /// In en, this message translates to:
-  /// **'Sr. iOS Developer'**
+  /// **'Senior iOS Developer'**
   String get job2Title;
 
   /// No description provided for @job2Period.
@@ -323,43 +311,25 @@ abstract class AppLocalizations {
   /// No description provided for @job2Desc1.
   ///
   /// In en, this message translates to:
-  /// **'Developed the iOS application for Lollipop Baby Camera (IoT baby monitoring product).'**
+  /// **'IoT Product Development: Led the iOS development for \"Lollipop Baby Camera,\" ensuring seamless hardware-software integration.'**
   String get job2Desc1;
 
   /// No description provided for @job2Desc2.
   ///
   /// In en, this message translates to:
-  /// **'Collaborated with UI/UX designers and backend engineers to evaluate and implement new features.'**
+  /// **'Architecture Upgrade: Introduced MVVM-C and RxSwift, significantly improving code scalability and testability.'**
   String get job2Desc2;
 
   /// No description provided for @job2Desc3.
   ///
   /// In en, this message translates to:
-  /// **'Responsible for feature development, testing, and App Store deployment.'**
+  /// **'Quality Assurance: Established automated CI/CD workflows (GitLab) and increased unit test coverage, resulting in more stable releases.'**
   String get job2Desc3;
-
-  /// No description provided for @job2Desc4.
-  ///
-  /// In en, this message translates to:
-  /// **'Adopted RxSwift and introduced MVVM-C architecture to enhance code structure and scalability.'**
-  String get job2Desc4;
-
-  /// No description provided for @job2Desc5.
-  ///
-  /// In en, this message translates to:
-  /// **'Assisted the team in implementing unit tests, increasing test coverage and stability during development.'**
-  String get job2Desc5;
-
-  /// No description provided for @job2Desc6.
-  ///
-  /// In en, this message translates to:
-  /// **'Established a CI/CD pipeline based on GitLab and Xcode command-line tools, significantly accelerating app deployment and release.'**
-  String get job2Desc6;
 
   /// No description provided for @job3Company.
   ///
   /// In en, this message translates to:
-  /// **'Connect Mobile LTD'**
+  /// **'Connect Mobile LTD(Company Dissolved)'**
   String get job3Company;
 
   /// No description provided for @job3Title.
@@ -485,7 +455,7 @@ abstract class AppLocalizations {
   /// No description provided for @job5Company.
   ///
   /// In en, this message translates to:
-  /// **'ZIMI TECHNOLOGY CO., LTD'**
+  /// **'ZIMI TECHNOLOGY CO., LTD(Project Team Disbanded)'**
   String get job5Company;
 
   /// No description provided for @job5Title.

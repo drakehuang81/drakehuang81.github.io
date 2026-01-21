@@ -42,16 +42,16 @@ class ResumeSection extends StatelessWidget {
                     _buildResumeItem(
                       period: l10n.job1Period,
                       title: l10n.job1Title,
-                      subtitle: l10n.confidential,
+                      subtitle: l10n.job1Company,
                       description:
-                          "• ${l10n.job1Desc1}\n• ${l10n.job1Desc2}\n• ${l10n.job1Desc3}\n• ${l10n.job1Desc4}\n• ${l10n.job1Desc5}\n• ${l10n.job1Desc6}",
+                          "• ${l10n.job1Desc1}\n• ${l10n.job1Desc2}\n• ${l10n.job1Desc3}",
                     ),
                     _buildResumeItem(
                       period: l10n.job2Period,
                       title: l10n.job2Title,
                       subtitle: l10n.job2Company,
                       description:
-                          "• ${l10n.job2Desc1}\n• ${l10n.job2Desc2}\n• ${l10n.job2Desc3}\n• ${l10n.job2Desc4}\n• ${l10n.job2Desc5}\n• ${l10n.job2Desc6}",
+                          "• ${l10n.job2Desc1}\n• ${l10n.job2Desc2}\n• ${l10n.job2Desc3}",
                     ),
                     _buildResumeItem(
                       period: l10n.job3Period,

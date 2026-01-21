@@ -81,81 +81,60 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get job0Desc1 =>
-      'Pioneered AI-Augmented Development: Leveraged cutting-edge AI CLI agents (including Claude Code, Gemini CLI, OpenCode, and Antigravity) to orchestrate complex coding tasks. Established a high-velocity workflow focused on automated refactoring and intelligent debugging.';
+      'Cross-Platform Product Launch: Designed and engineered a scalable mobile application from scratch using Flutter, handling the full lifecycle from requirements to MVP deployment.';
 
   @override
   String get job0Desc2 =>
-      'End-to-End Flutter Development: Architected and engineered a cross-platform mobile application from scratch using Flutter. Managed the full product lifecycle, translating conceptual requirements into a functional MVP with clean architecture.';
+      'Technology Integration: Implemented clean architecture and utilized AI-driven workflows to accelerate feature delivery and code refactoring.';
 
   @override
   String get job0Desc3 =>
-      'Flutter Web Implementation: Designed and deployed a responsive personal portfolio website using Flutter Web. Demonstrated proficiency in single-codebase multi-platform development and optimized web performance.';
+      'High-Velocity Product Delivery: Architected and launched a full-stack cross-platform application using Flutter and Clean Architecture, reducing development cycle by 40% through AI-assisted workflows.';
 
   @override
   String get job1Title => 'Senior iOS Developer';
+
+  @override
+  String get job1Company => 'Cle (Business Closure)';
 
   @override
   String get job1Period => '2024.12 - 2025.10';
 
   @override
   String get job1Desc1 =>
-      'Maintained and optimized legacy iOS projects written primarily in Objective-C (70%) and some Swift (30%).';
+      'Legacy Code Modernization: Maintained a mixed codebase (70% Objective-C / 30% Swift), successfully refactoring core modules to Swift without disrupting live operations.';
 
   @override
   String get job1Desc2 =>
-      'Developed new features using SwiftUI, while maintaining and updating existing UIKit-based features.';
+      'Feature Expansion: Delivered new features using SwiftUI, bridging the gap between modern UI frameworks and existing UIKit infrastructure.';
 
   @override
   String get job1Desc3 =>
-      'Implemented and maintained CI/CD pipelines to improve testing and deployment efficiency.';
-
-  @override
-  String get job1Desc4 =>
-      'Collaborated closely with backend engineers and product managers to define requirements and deliver features on time.';
-
-  @override
-  String get job1Desc5 =>
-      'Participated in code reviews and technical discussions to ensure code quality and maintainability.';
-
-  @override
-  String get job1Desc6 =>
-      'Refactored legacy code and incrementally migrated core components to modern Swift practices.';
+      'DevOps Efficiency: Optimized CI/CD pipelines, reducing build times and streamlining the release process to the App Store.';
 
   @override
   String get job2Company => 'Masterwork Aoitek Tech Corp Ltd';
 
   @override
-  String get job2Title => 'Sr. iOS Developer';
+  String get job2Title => 'Senior iOS Developer';
 
   @override
   String get job2Period => '2023.03 - 2024.10';
 
   @override
   String get job2Desc1 =>
-      'Developed the iOS application for Lollipop Baby Camera (IoT baby monitoring product).';
+      'IoT Product Development: Led the iOS development for \"Lollipop Baby Camera,\" ensuring seamless hardware-software integration.';
 
   @override
   String get job2Desc2 =>
-      'Collaborated with UI/UX designers and backend engineers to evaluate and implement new features.';
+      'Architecture Upgrade: Introduced MVVM-C and RxSwift, significantly improving code scalability and testability.';
 
   @override
   String get job2Desc3 =>
-      'Responsible for feature development, testing, and App Store deployment.';
+      'Quality Assurance: Established automated CI/CD workflows (GitLab) and increased unit test coverage, resulting in more stable releases.';
 
   @override
-  String get job2Desc4 =>
-      'Adopted RxSwift and introduced MVVM-C architecture to enhance code structure and scalability.';
-
-  @override
-  String get job2Desc5 =>
-      'Assisted the team in implementing unit tests, increasing test coverage and stability during development.';
-
-  @override
-  String get job2Desc6 =>
-      'Established a CI/CD pipeline based on GitLab and Xcode command-line tools, significantly accelerating app deployment and release.';
-
-  @override
-  String get job3Company => 'Connect Mobile LTD';
+  String get job3Company => 'Connect Mobile LTD(Company Dissolved)';
 
   @override
   String get job3Title => 'Sr. iOS Developer';
@@ -232,7 +211,7 @@ class AppLocalizationsEn extends AppLocalizations {
       'Served as the team\'s RxSwift instructor, assisting members in mastering related tools.';
 
   @override
-  String get job5Company => 'ZIMI TECHNOLOGY CO., LTD';
+  String get job5Company => 'ZIMI TECHNOLOGY CO., LTD(Project Team Disbanded)';
 
   @override
   String get job5Title => 'iOS Developer';
