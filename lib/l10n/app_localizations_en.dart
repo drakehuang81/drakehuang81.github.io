@@ -134,10 +134,10 @@ class AppLocalizationsEn extends AppLocalizations {
       'Quality Assurance: Established automated CI/CD workflows (GitLab) and increased unit test coverage, resulting in more stable releases.';
 
   @override
-  String get job3Company => 'Connect Mobile LTD(Company Dissolved)';
+  String get job3Company => 'Connect Mobile LTD(Project Team Disbanded)';
 
   @override
-  String get job3Title => 'Sr. iOS Developer';
+  String get job3Title => 'Senior iOS Developer';
 
   @override
   String get job3Period => '2022.07 - 2022.12';
@@ -211,7 +211,7 @@ class AppLocalizationsEn extends AppLocalizations {
       'Served as the team\'s RxSwift instructor, assisting members in mastering related tools.';
 
   @override
-  String get job5Company => 'ZIMI TECHNOLOGY CO., LTD(Project Team Disbanded)';
+  String get job5Company => 'ZIMI TECHNOLOGY CO., LTD(Company Dissolved)';
 
   @override
   String get job5Title => 'iOS Developer';

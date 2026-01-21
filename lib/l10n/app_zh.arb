@@ -38,7 +38,7 @@
   "job2Desc1": "IoT 產品開發：主導 \"Lollipop Baby Camera\" 的 iOS 開發，確保軟硬體整合運作順暢。",
   "job2Desc2": "架構升級：導入 MVVM-C 與 RxSwift，顯著提升程式碼的可擴充性與可測試性。",
   "job2Desc3": "品質保證：建立自動化 CI/CD 工作流 (GitLab) 並提升單元測試覆蓋率，確保發布版本更加穩定。",
-  "job3Company": "Connect Mobile LTD(Company Dissolved)",
+  "job3Company": "Connect Mobile LTD(專案團隊解散)",
   "job3Title": "資深 iOS 開發工程師",
   "job3Period": "2022.07 - 2022.12",
   "job3Desc1": "開發一款基於地圖的社交平台 iOS 應用程式。",

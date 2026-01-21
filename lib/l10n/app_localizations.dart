@@ -329,13 +329,13 @@ abstract class AppLocalizations {
   /// No description provided for @job3Company.
   ///
   /// In en, this message translates to:
-  /// **'Connect Mobile LTD(Company Dissolved)'**
+  /// **'Connect Mobile LTD(Project Team Disbanded)'**
   String get job3Company;
 
   /// No description provided for @job3Title.
   ///
   /// In en, this message translates to:
-  /// **'Sr. iOS Developer'**
+  /// **'Senior iOS Developer'**
   String get job3Title;
 
   /// No description provided for @job3Period.
@@ -455,7 +455,7 @@ abstract class AppLocalizations {
   /// No description provided for @job5Company.
   ///
   /// In en, this message translates to:
-  /// **'ZIMI TECHNOLOGY CO., LTD(Project Team Disbanded)'**
+  /// **'ZIMI TECHNOLOGY CO., LTD(Company Dissolved)'**
   String get job5Company;
 
   /// No description provided for @job5Title.
