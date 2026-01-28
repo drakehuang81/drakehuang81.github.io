@@ -29,6 +29,16 @@ jobs:
       - name: Build Web
         run: |
           flutter build web --release --base-href "/"
+
+
+      - name: Include garage subdirectory
+        run: |
+          if [ -d "garage" ]; then
+            echo "📋 Copying garage/ to build/web/garage/"
+            cp -R garage build/web/garage
+          else
+            echo "ℹ️ No garage/ directory found in repo, skipping"
+          fi
         
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
