@@ -58443,7 +58443,7 @@ if(b.b>900)return A.a7q(A.c([A.aaf(s.Bu(a)),B.GZ,A.aaf(s.Ps(a))],r),B.an,B.aC)
 else return A.zk(A.c([s.Br(a,!0),B.H0,s.Bu(a)],r),B.an,B.aC,B.bR)},
 $S:357}
 A.a1T.prototype={
-$0(){A.a8B(A.hl("https://drakehuang81.github.io/garage-landing/privacy.html",0,null))},
+$0(){A.a8B(A.hl("https://drakehuang81.github.io/garage/privacy.html",0,null))},
 $S:0}
 A.a1U.prototype={
 $3(a,b,c){var s=null
